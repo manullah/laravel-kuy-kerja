@@ -14,6 +14,10 @@ module.exports = {
         themeVariants: ["dark"],
         customForms: (theme) => ({
             default: {
+                "input, textarea, multiselect, checkbox, radio": {
+                    borderRadius: theme("borderRadius.DEFAULT"),
+                    borderWidth: theme("borderWidth.DEFAULT"),
+                },
                 "input, textarea": {
                     "&::placeholder": {
                         color: theme("colors.gray.400"),
@@ -195,14 +199,9 @@ module.exports = {
         borderColor: ["focus", "hover", "dark", "dark:focus", "dark:hover"],
         divideColor: ["dark"],
         boxShadow: ["focus", "dark:focus"],
-        extend: {
-            opacity: ["disabled"],
-        },
     },
 
     plugins: [
-        require("@tailwindcss/forms"),
-        require("@tailwindcss/typography"),
         require("tailwindcss-multi-theme"),
         require("@tailwindcss/custom-forms"),
         plugin(({ addUtilities, e, theme, variants }) => {
