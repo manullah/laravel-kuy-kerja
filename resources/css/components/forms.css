@@ -3,13 +3,12 @@
 }
 
 .form-group .label {
-    @apply text-gray-700 dark:text-gray-400;
+    @apply text-gray-700 dark:text-gray-400 mb-1;
 }
 
 .form-control {
     @apply block
         w-full
-        mt-1
         text-sm
         dark:border-gray-600
         dark:bg-gray-700
@@ -19,6 +18,10 @@
         dark:text-gray-300
         dark:focus:shadow-outline-gray
         form-input;
+}
+
+.select {
+    @apply block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray
 }
 
 .checkbox {

@@ -14,7 +14,7 @@ module.exports = {
         themeVariants: ["dark"],
         customForms: (theme) => ({
             default: {
-                "input, textarea, multiselect, checkbox, radio": {
+                "input, textarea, select, multiselect, checkbox, radio": {
                     borderRadius: theme("borderRadius.DEFAULT"),
                     borderWidth: theme("borderWidth.DEFAULT"),
                 },

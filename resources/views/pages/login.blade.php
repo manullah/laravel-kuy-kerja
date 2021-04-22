@@ -2,10 +2,10 @@
     <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div class="flex flex-col overflow-y-auto md:flex-row">
             <div class="h-32 md:h-auto md:w-1/2">
-                <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
-                    src="{{ url('/images/login-office.jpeg') }}" alt="Office" />
+                <img aria-hidden="true" class="object-cover w-full h-full dark:hidden" src="/images/login-office.jpeg"
+                    alt="Office" />
                 <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
-                    src="{{ url('/images/login-office-dark.jpeg') }}" alt="Office" />
+                    src="/images/login-office-dark.jpeg" alt="Office" />
             </div>
 
             <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
@@ -17,13 +17,13 @@
                     </h1>
 
                     <label class="form-group">
-                        <span for="email" class="label">{{ __('Email') }}</span>
-                        <input id="email" type="email" name="email" :value="old('email')" class="form-control"
+                        <div for="email" class="label">{{ __('Email') }}</div>
+                        <input id="email" type="email" name="email" wire:model="email" class="form-control"
                             placeholder="Email..." required />
                     </label>
 
                     <label class="form-group">
-                        <span for="password" class="label">{{ __('Password') }}</span>
+                        <div for="password" class="label">{{ __('Password') }}</div>
                         <input id="password" type="password" name="password" class="form-control"
                             placeholder="Password..." autocomplete="current-password" required />
                     </label>
@@ -57,12 +57,14 @@
                             </a>
                         </p>
                     @endif
-                    <p class="mt-1">
-                        <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                            href="{{ route('register') }}">
-                            Create account
-                        </a>
-                    </p>
+                    @if (Route::has('register'))
+                        <p class="mt-1">
+                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="{{ route('register') }}">
+                                Create account
+                            </a>
+                        </p>
+                    @endif
                 </form>
             </div>
         </div>
