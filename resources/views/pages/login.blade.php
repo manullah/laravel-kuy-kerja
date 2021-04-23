@@ -16,24 +16,22 @@
                         Login
                     </h1>
 
-                    <label class="form-group">
-                        <div for="email" class="label">{{ __('Email') }}</div>
-                        <input id="email" type="email" name="email" wire:model="email" class="form-control"
-                            placeholder="Email..." required />
-                    </label>
-
-                    <label class="form-group">
-                        <div for="password" class="label">{{ __('Password') }}</div>
-                        <input id="password" type="password" name="password" class="form-control"
-                            placeholder="Password..." autocomplete="current-password" required />
-                    </label>
+                    <div class="form-group">
+                        <x-jet-label for="email" value="{{ __('Email') }}" class="label" />
+                        <x-jet-input id="email" type="email" name="email" :value="old('email')" placeholder="Email..."
+                            class="form-control" required autofocus />
+                    </div>
 
                     <div class="form-group">
-                        <label class="flex items-center dark:text-gray-400">
-                            <input id="remember_me" type="checkbox" name="remember" class="checkbox" />
-                            <span class="ml-2">
-                                {{ __('Remember me') }}
-                            </span>
+                        <x-jet-label for="password" value="{{ __('Password') }}" class="label" />
+                        <x-jet-input id="password" type="password" name="password" autocomplete="current-password"
+                            placeholder="Password..." class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remember_me" class="flex items-center">
+                            <x-jet-checkbox id="remember_me" name="remember" class="checkbox" />
+                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 

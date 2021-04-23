@@ -16,49 +16,53 @@
                         Create Account
                     </h1>
 
-                    <label class="form-group">
-                        <div for="name" class="label">{{ __('Name') }}</div>
-                        <input id="name" type="text" name="name" wire:model="name" class="form-control"
-                            placeholder="Name..." required />
-                    </label>
+                    <div class="form-group">
+                        <x-jet-label for="name" value="{{ __('Full Name') }}" class="label" />
+                        <x-jet-input id="name" type="text" name="name" :value="old('name')" placeholder="Name..."
+                            class="form-control" required autofocus autocomplete="name" />
+                    </div>
 
-                    <label class="form-group">
-                        <div for="email" class="label">{{ __('Email') }}</div>
-                        <input id="email" type="email" name="email" wire:model="email" class="form-control"
-                            placeholder="Email..." required />
-                    </label>
+                    <div class="form-group">
+                        <x-jet-label for="email" value="{{ __('Email') }}" class="label" />
+                        <x-jet-input id="email" type="email" name="email" :value="old('email')" placeholder="Email..."
+                            class="form-control" required />
+                    </div>
 
                     <label class="form-group">
                         <div for="role_id" class="label">{{ __('Register as') }}</div>
-                        <select name="role_id" x-model="role_id" class="select" required>
-                            <option value="2">Recruiter</option>
-                            <option value="3">Searcher</option>
+                        <select name="role_id" class="select" required>
+                            <option value="2" @if (old('role_id') == 2) selected @endif>Searcher</option>
+                            <option value="3" @if (old('role_id') == 3) selected @endif>Recruiter</option>
                         </select>
                     </label>
 
-                    <label class="form-group">
-                        <div for="password" class="label">{{ __('Password') }}</div>
-                        <input id="password" type="password" name="password" class="form-control"
-                            placeholder="Password..." autocomplete="new-password" required />
-                    </label>
+                    <div class="form-group">
+                        <x-jet-label for="password" value="{{ __('Password') }}" class="label" />
+                        <x-jet-input id="password" type="password" name="password" autocomplete="new-password"
+                            placeholder="Password..." class="form-control" required />
+                    </div>
 
-                    <label class="form-group">
-                        <div for="password_confirmation" class="label">{{ __('Confirm Password') }}</div>
-                        <input id="password_confirmation" type="password" name="password_confirmation"
-                            class="form-control" placeholder="Password..." autocomplete="new-password" required />
-                    </label>
+                    <div class="form-group">
+                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" class="label" />
+                        <x-jet-input id="password_confirmation" type="password" name="password_confirmation"
+                            autocomplete="new-password" placeholder="Confirm Password..." class="form-control"
+                            required />
+                    </div>
 
                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                         <div class="form-group">
-                            <label class="flex items-center dark:text-gray-400">
-                                <input id="terms" type="checkbox" name="terms" class="checkbox" />
-                                <span class="ml-2">
-                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                            <x-jet-label for="terms">
+                                <div class="flex items-center">
+                                    <x-jet-checkbox name="terms" id="terms" class="checkbox" />
+
+                                    <div class="ml-2">
+                                        {!! __('I agree to the :terms_of_service and :privacy_policy', [
     'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">' . __('Terms of Service') . '</a>',
     'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">' . __('Privacy Policy') . '</a>',
 ]) !!}
-                                </span>
-                            </label>
+                                    </div>
+                                </div>
+                            </x-jet-label>
                         </div>
                     @endif
 
