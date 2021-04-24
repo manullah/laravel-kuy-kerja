@@ -57,8 +57,8 @@
 
                                     <div class="ml-2">
                                         {!! __('I agree to the :terms_of_service and :privacy_policy', [
-    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">' . __('Terms of Service') . '</a>',
-    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">' . __('Privacy Policy') . '</a>',
+    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">' . __('Terms of Service') . '</a>',
+    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">' . __('Privacy Policy') . '</a>',
 ]) !!}
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
 
                     @if (Route::has('login'))
                         <p>
-                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                            <a class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
                                 href="{{ route('login') }}">
                                 Already have an account? Login
                             </a>

@@ -20,25 +20,21 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
-    <x-jet-banner />
+<body x-data="{ isSideMenuOpen: true, darkTheme: window.localStorage.getItem('darkTheme') }"
+    :class="{ 'theme-dark': darkTheme }">
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        <x-navigations.sidebar></x-navigations.sidebar>
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+        <div class="flex flex-col flex-1">
+            <x-navigations.navbar></x-navigations.navbar>
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+            <main class="h-full pb-16 overflow-y-auto">
+                <!-- Remove everything INSIDE this div to a really blank page -->
+                <div class="container px-6 mx-auto grid">
+                    {{ $slot }}
                 </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
+            </main>
+        </div>
     </div>
 
     @stack('modals')

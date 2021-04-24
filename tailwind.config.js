@@ -163,6 +163,20 @@ module.exports = {
             },
         },
         extend: {
+            colors: {
+                primary: {
+                    50: "#E6FFEA",
+                    100: "#CCFFD5",
+                    200: "#B3FFC1",
+                    300: "#99FFAC",
+                    400: "#80FF97",
+                    500: "#66FF82",
+                    600: "#4DFF6D",
+                    700: "#33FF58",
+                    800: "#19FF44",
+                    900: "#00FF2F",
+                },
+            },
             maxHeight: {
                 0: "0",
                 xl: "36rem",
@@ -202,6 +216,7 @@ module.exports = {
     },
 
     plugins: [
+        require("@tailwindcss/forms"),
         require("tailwindcss-multi-theme"),
         require("@tailwindcss/custom-forms"),
         plugin(({ addUtilities, e, theme, variants }) => {

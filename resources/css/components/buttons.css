@@ -17,5 +17,5 @@
 }
 
 .button.primary {
-    @apply text-white bg-purple-600 active:bg-purple-600 hover:bg-purple-700 focus:shadow-outline-purple border-transparent;
+    @apply text-white bg-primary-600 active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary border-transparent;
 }

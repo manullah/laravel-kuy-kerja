@@ -12,18 +12,18 @@
         text-sm
         dark:border-gray-600
         dark:bg-gray-700
-        focus:border-purple-400
+        focus:border-primary-400
         focus:outline-none
-        focus:shadow-outline-purple
+        focus:shadow-outline-primary
         dark:text-gray-300
         dark:focus:shadow-outline-gray
         form-input;
 }
 
 .select {
-    @apply block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray
+    @apply block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-primary-400 focus:outline-none focus:shadow-outline-primary dark:focus:shadow-outline-gray
 }
 
 .checkbox {
-    @apply text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray;
+    @apply text-primary-600 form-checkbox focus:border-primary-400 focus:outline-none focus:shadow-outline-primary dark:focus:shadow-outline-gray;
 }
