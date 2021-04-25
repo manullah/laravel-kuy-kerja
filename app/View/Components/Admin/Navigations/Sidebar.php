@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Navigations;
+namespace App\View\Components\Admin\Navigations;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\Component;
@@ -50,7 +50,7 @@ class Sidebar extends Component
             ]
         ];
 
-        return view('components.navigations.sidebar', [
+        return view('components.admin.navigations.sidebar', [
             'title' => 'Kuy Kerja',
             'menus' => $menus
         ]);

@@ -48,7 +48,7 @@
 
             <!-- Profile menu -->
             <li>
-                <x-buttons.dropdown>
+                <x-general.buttons.dropdown>
                     <x-slot name="button">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                             <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
@@ -119,7 +119,7 @@
                             </form>
                         </li>
                     </ul>
-                </x-buttons.dropdown>
+                </x-general.buttons.dropdown>
             </li>
         </ul>
     </div>

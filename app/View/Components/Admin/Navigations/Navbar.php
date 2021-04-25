@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Buttons;
+namespace App\View\Components\Admin\Navigations;
 
 use Illuminate\View\Component;
 
-class Dropdown extends Component
+class Navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Dropdown extends Component
      */
     public function render()
     {
-        return view('components.buttons.dropdown');
+        return view('components.admin.navigations.navbar');
     }
 }

@@ -20,13 +20,13 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body x-data="{ isSideMenuOpen: true, darkTheme: window.localStorage.getItem('darkTheme') }"
+<body x-data="{ isSideMenuOpen: true, darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
     :class="{ 'theme-dark': darkTheme }">
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
-        <x-navigations.sidebar></x-navigations.sidebar>
+        <x-admin.navigations.sidebar></x-admin.navigations.sidebar>
 
         <div class="flex flex-col flex-1">
-            <x-navigations.navbar></x-navigations.navbar>
+            <x-admin.navigations.navbar></x-admin.navigations.navbar>
 
             <main class="h-full pb-16 overflow-y-auto">
                 <!-- Remove everything INSIDE this div to a really blank page -->
