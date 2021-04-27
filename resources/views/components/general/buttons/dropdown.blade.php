@@ -15,7 +15,7 @@
             x-transition:leave-end="transform opacity-0 scale-95"
             x-on:click.away="isProfileMenuOpen = !isProfileMenuOpen"
             x-on:keydown.escape="isProfileMenuOpen = !isProfileMenuOpen"
-            class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+            class="z-50 absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
             aria-label="submenu">
             {{ $slot }}
         </div>

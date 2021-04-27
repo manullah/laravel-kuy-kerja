@@ -18,7 +18,8 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body>
+<body x-data="{ darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
+    :class="{ 'theme-dark': darkTheme }">
     <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         {{ $slot }}
     </div>

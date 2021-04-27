@@ -20,25 +20,26 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
-    <x-jet-banner />
+<body
+    x-data="{ isSideMenuOpen: (window.matchMedia('only screen and (min-width: 760px)').matches === true), darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
+    :class="{ 'theme-dark': darkTheme }">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <!--
+    When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+    Menu open: "fixed inset-0 z-40 overflow-y-auto", Menu closed: ""
+  -->
+        <x-general.navigations.navbar></x-general.navigations.navbar>
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+        <div class="py-10">
+            <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                <x-general.navigations.sidebar></x-general.navigations.sidebar>
+
+                <div class="col-span-10">
+                    {{ $slot }}
                 </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
+            </div>
+        </div>
     </div>
 
     @stack('modals')
