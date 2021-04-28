@@ -20,6 +20,23 @@
         form-input;
 }
 
+.search-form {
+    @apply block
+        w-full
+        rounded-md
+        py-2
+        pl-10
+        pr-3
+        text-sm
+        dark:border-gray-600
+        dark:bg-gray-700
+        focus:border-primary-400
+        focus:outline-none
+        focus:shadow-outline-primary
+        dark:text-gray-300
+        dark:focus:shadow-outline-gray;
+}
+
 .select {
     @apply block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-primary-400 focus:outline-none focus:shadow-outline-primary dark:focus:shadow-outline-gray
 }
