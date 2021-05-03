@@ -41,7 +41,7 @@
 
             <div class="flex items-center justify-end col-span-4 space-x-6">
                 <!-- Dark Mode -->
-                <button class="rounded-md focus:outline-none focus:shadow-outline-primary text-primary-600"
+                <button x-show="false" class="rounded-md focus:outline-none focus:shadow-outline-primary text-primary-600"
                     x-on:click="darkTheme = !darkTheme; window.localStorage.setItem('darkTheme', darkTheme)"
                     aria-label="Toggle color mode">
                     <template x-if="!darkTheme">
