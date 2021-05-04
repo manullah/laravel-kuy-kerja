@@ -14,7 +14,7 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->foreignId('role_id')->constrained()->nullable();
+            $table->foreignId('role_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->dropForeign('role_id');
+            $table->dropForeign('role_id');
         });
     }
 }
