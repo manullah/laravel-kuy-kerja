@@ -41,7 +41,8 @@
 
             <div class="flex items-center justify-end col-span-4 space-x-6">
                 <!-- Dark Mode -->
-                <button x-show="false" class="rounded-md focus:outline-none focus:shadow-outline-primary text-primary-600"
+                <button x-show="false"
+                    class="rounded-md focus:outline-none focus:shadow-outline-primary text-primary-600"
                     x-on:click="darkTheme = !darkTheme; window.localStorage.setItem('darkTheme', darkTheme)"
                     aria-label="Toggle color mode">
                     <template x-if="!darkTheme">
@@ -60,67 +61,76 @@
                 </button>
 
                 <!-- Profile dropdown -->
-                <div class="flex-shrink-0 relative ml-5">
-                    <x-general.buttons.dropdown>
-                        <x-slot name="button">
-                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
-                                    <img class="h-8 w-8 rounded-full object-cover"
-                                        src="{{ Auth::user()->profile_photo_url }}"
-                                        alt="{{ Auth::user()->name }}" />
-                                </div>
-                            @else
-                                <span class="inline-flex rounded-md">
+                @if (Auth::user())
+                    <div class="flex-shrink-0 relative ml-5">
+                        <x-general.buttons.dropdown>
+                            <x-slot name="button">
+                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
-                                        {{ Auth::user()->name }}
-
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            alt="{{ Auth::user()->name }}" />
                                     </div>
-                                </span>
-                            @endif
-                        </x-slot>
+                                @else
+                                    <span class="inline-flex rounded-md">
+                                        <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
+                                            {{ Auth::user()->name }}
 
-                        <ul>
-                            <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                                    href="{{ route('profile.show') }}">
-                                    <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
-                                        </path>
-                                    </svg>
-                                    <span>{{ __('Profile') }}</span>
-                                </a>
-                            </li>
+                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </span>
+                                @endif
+                            </x-slot>
 
-                            <li class="flex">
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}" class="w-full">
-                                    @csrf
-
+                            <ul>
+                                <li class="flex">
                                     <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                                        href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        href="{{ route('profile.show') }}">
                                         <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path
-                                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                                             </path>
                                         </svg>
-                                        <span>{{ __('Log Out') }}</span>
+                                        <span>{{ __('Profile') }}</span>
                                     </a>
-                                </form>
-                            </li>
-                        </ul>
-                    </x-general.buttons.dropdown>
-                </div>
+                                </li>
+
+                                <li class="flex">
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                                        @csrf
+
+                                        <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                                            href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                                                </path>
+                                            </svg>
+                                            <span>{{ __('Log Out') }}</span>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </x-general.buttons.dropdown>
+                    </div>
+                @else
+                    <div>
+                        <a href="{{ route('login') }}">Login</a>
+                        <span class="mx-1">/</span>
+                        <a href="{{ route('register') }}">Sign up</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

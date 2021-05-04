@@ -2,6 +2,7 @@
 
 namespace App\View\Components\General\Navigations;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -36,7 +37,7 @@ class Sidebar extends Component
                 'actived' => request()->routeIs('index')
             ],
             (object) [
-                'show' => true,
+                'show' => Auth::user(),
                 'title' => 'Profile',
                 'href' => 'profile.show',
                 'icon' => '<svg aria-hidden="true" fill="none" stroke-linecap="round"
