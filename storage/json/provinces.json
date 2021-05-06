@@ -1,0 +1,174 @@
+{
+    "provinces": [
+        {
+            "id": "1",
+            "country_id": "1",
+            "name": "Aceh (NAD)"
+        },
+        {
+            "id": "2",
+            "country_id": "1",
+            "name": "Bali"
+        },
+        {
+            "id": "3",
+            "country_id": "1",
+            "name": "Banten"
+        },
+        {
+            "id": "4",
+            "country_id": "1",
+            "name": "Bengkulu"
+        },
+        {
+            "id": "5",
+            "country_id": "1",
+            "name": "DI Yogyakarta"
+        },
+        {
+            "id": "6",
+            "country_id": "1",
+            "name": "DKI Jakarta"
+        },
+        {
+            "id": "7",
+            "country_id": "1",
+            "name": "Gorontalo"
+        },
+        {
+            "id": "8",
+            "country_id": "1",
+            "name": "Jambi"
+        },
+        {
+            "id": "9",
+            "country_id": "1",
+            "name": "Jawa Barat"
+        },
+        {
+            "id": "10",
+            "country_id": "1",
+            "name": "Jawa Tengah"
+        },
+        {
+            "id": "11",
+            "country_id": "1",
+            "name": "Jawa Timur"
+        },
+        {
+            "id": "12",
+            "country_id": "1",
+            "name": "Kalimantan Barat"
+        },
+        {
+            "id": "13",
+            "country_id": "1",
+            "name": "Kalimantan Selatan"
+        },
+        {
+            "id": "14",
+            "country_id": "1",
+            "name": "Kalimantan Tengah"
+        },
+        {
+            "id": "15",
+            "country_id": "1",
+            "name": "Kalimantan Timur"
+        },
+        {
+            "id": "16",
+            "country_id": "1",
+            "name": "Kalimantan Utara"
+        },
+        {
+            "id": "17",
+            "country_id": "1",
+            "name": "Kepulauan Bangka Belitung"
+        },
+        {
+            "id": "18",
+            "country_id": "1",
+            "name": "Kepulauan Riau"
+        },
+        {
+            "id": "19",
+            "country_id": "1",
+            "name": "Lampung"
+        },
+        {
+            "id": "20",
+            "country_id": "1",
+            "name": "Maluku"
+        },
+        {
+            "id": "21",
+            "country_id": "1",
+            "name": "Maluku Utara"
+        },
+        {
+            "id": "22",
+            "country_id": "1",
+            "name": "Nusa Tenggara Barat (NTB)"
+        },
+        {
+            "id": "23",
+            "country_id": "1",
+            "name": "Nusa Tenggara Timur (NTT)"
+        },
+        {
+            "id": "24",
+            "country_id": "1",
+            "name": "Papua"
+        },
+        {
+            "id": "25",
+            "country_id": "1",
+            "name": "Papua Barat"
+        },
+        {
+            "id": "26",
+            "country_id": "1",
+            "name": "Riau"
+        },
+        {
+            "id": "27",
+            "country_id": "1",
+            "name": "Sulawesi Barat"
+        },
+        {
+            "id": "28",
+            "country_id": "1",
+            "name": "Sulawesi Selatan"
+        },
+        {
+            "id": "29",
+            "country_id": "1",
+            "name": "Sulawesi Tengah"
+        },
+        {
+            "id": "30",
+            "country_id": "1",
+            "name": "Sulawesi Tenggara"
+        },
+        {
+            "id": "31",
+            "country_id": "1",
+            "name": "Sulawesi Utara"
+        },
+        {
+            "id": "32",
+            "country_id": "1",
+            "name": "Sumatera Barat"
+        },
+        {
+            "id": "33",
+            "country_id": "1",
+            "name": "Sumatera Selatan"
+        },
+        {
+            "id": "34",
+            "country_id": "1",
+            "name": "Sumatera Utara"
+        }
+    ]
+}

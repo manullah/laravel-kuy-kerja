@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Livewire\Profile\Index;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 use Laravel\Jetstream\Jetstream;
+use Livewire\Livewire;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -20,6 +20,7 @@ class JetstreamServiceProvider extends ServiceProvider
     public function register()
     {
         Jetstream::ignoreRoutes();
+        // Livewire::component('profile.update-profile-information-form', Index::class);
     }
 
     /**
@@ -32,14 +33,6 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
-
-        Fortify::loginView(function () {
-            return view('pages.login');
-        });
-
-        Fortify::registerView(function () {
-            return view('pages.register');
-        });
     }
 
     /**

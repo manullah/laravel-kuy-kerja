@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\UserDetail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -18,10 +19,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input)
     {
+        dd($user->role);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'country_id' => ['required'],
+            'province_id' => ['required'],
+            'city_id' => ['required'],
+            'district_id' => ['required'],
+            'village_id' => ['required'],
+            'address' => ['required']
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -36,6 +44,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
             ])->save();
+
+            UserDetail::updateOrCreate(
+                [ 'user_id' => $user->id ],
+                [
+                    'address' => $input['address'],
+                    'country_id' => $input['country_id']
+                ]
+            );
         }
     }
 
