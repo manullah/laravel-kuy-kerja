@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class UserDetail extends Model
 {
@@ -27,10 +28,29 @@ class UserDetail extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['searcher_cv_path'];
+
+    /**
      * Get the user that owns the user_detail.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the URL to the user's searcher cv.
+     *
+     * @return string
+     */
+    public function getSearcherCvPathAttribute()
+    {
+        return $this->attributes['searcher_cv_path']
+                    ? Storage::disk('public')->url($this->attributes['searcher_cv_path'])
+                    : '';
     }
 }

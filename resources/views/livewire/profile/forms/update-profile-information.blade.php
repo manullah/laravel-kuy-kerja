@@ -64,6 +64,13 @@
             <x-jet-input-error for="email" class="mt-2" />
         </div>
 
+        <!-- Phone -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="phone" value="{{ __('Phone') }}" />
+            <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model="state.phone" />
+            <x-jet-input-error for="phone" class="mt-2" />
+        </div>
+
         <!-- Country -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="country_id" value="{{ __('Country') }}" />
@@ -131,6 +138,33 @@
                 wire:model="state.address"></textarea>
             <x-jet-input-error for="address" class="mt-2" />
         </div>
+
+        @if (Auth::user()->isSearcher())
+            <div x-data="{cvName: null, cvPreview: null}" class="col-span-6 sm:col-span-4">
+                <!-- Profile Cv File Input -->
+                <input type="file" class="hidden" wire:model="cv" x-ref="cv" x-on:change="
+                                    cvName = $refs.cv.files[0].name;
+                                    const reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        cvPreview = e.target.result;
+                                    };
+                                    reader.readAsDataURL($refs.cv.files[0]);
+                            " />
+
+                <x-jet-label for="cv" value="{{ __('Cv') }}" />
+                <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.cv.click()">
+                    {{ __('Select A New Cv') }}
+                </x-jet-secondary-button>
+
+                @if ($this->user->userDetail->searcher_cv_path)
+                    <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfileCv">
+                        {{ __('Remove Cv') }}
+                    </x-jet-secondary-button>
+                @endif
+
+                <x-jet-input-error for="cv" class="mt-2" />
+            </div>
+        @endif
     </x-slot>
 
     <x-slot name="actions">
@@ -138,7 +172,7 @@
             {{ __('Saved.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        <x-jet-button wire:loading.attr="disabled" wire:target="cv">
             {{ __('Save') }}
         </x-jet-button>
     </x-slot>

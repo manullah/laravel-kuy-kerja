@@ -21,6 +21,11 @@
 
             @if ($tab->id == 1)
                 @livewire('profile.forms.update-profile-information')
+
+                @if (Auth::user()->userDetail->searcher_cv_path)
+                    <iframe src="{{ Auth::user()->userDetail->searcher_cv_path }}" frameborder="0"
+                        style="width: 100%; height: 600px" class="mt-10"></iframe>
+                @endif
             @endif
 
             @if ($tab->id == 2)

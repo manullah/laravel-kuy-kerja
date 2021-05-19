@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Profile;
 
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features as FortifyFeatures;
 use Laravel\Jetstream\Features as JetstreamFeatures;
 use Livewire\Component;
@@ -9,6 +10,18 @@ use Livewire\Component;
 class ProfileIndex extends Component
 {
     public $sectionTab = 1;
+
+    public $auth;
+
+    /**
+     * Prepare the component.
+     *
+     * @return void
+     */
+    public function mount()
+    {
+        $this->auth = array_merge(Auth::user()->withoutRelations()->toArray(), Auth::user()->userDetail->toArray());
+    }
 
     public function changeTab($tab)
     {
@@ -38,7 +51,7 @@ class ProfileIndex extends Component
             ],
             (object) [
                 'id' => 4,
-                'show' => true,
+                'show' => false,
                 'title' => 'Browser Session',
                 'actived' => $this->sectionTab == 4
             ],
@@ -51,7 +64,8 @@ class ProfileIndex extends Component
         ];
 
         return view('livewire.profile.profile-index', [
-            'tabs' => $tabs
+            'tabs' => $tabs,
+            // 'pdf' => response()->file('http://127.0.0.1:8000/storage/searcher-cv/4o9goQdprzTaUEX1wdrREvt7m7tRnySd4si3jq5q.pdf')
         ]);
     }
 }

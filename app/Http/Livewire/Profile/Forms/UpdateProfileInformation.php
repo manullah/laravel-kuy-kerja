@@ -6,8 +6,10 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\UserDetail;
 use App\Models\Village;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -31,6 +33,13 @@ class UpdateProfileInformation extends Component
     public $photo;
 
     /**
+     * The new avatar for the user.
+     *
+     * @var mixed
+     */
+    public $cv;
+
+    /**
      * Prepare the component.
      *
      * @return void
@@ -52,12 +61,14 @@ class UpdateProfileInformation extends Component
 
         $updater->update(
             Auth::user(),
-            $this->photo
-                ? array_merge($this->state, ['photo' => $this->photo])
-                : $this->state
+            array_merge(
+                $this->state,
+                $this->photo ? ['photo' => $this->photo] : [],
+                $this->cv ? ['cv' => $this->cv] : []
+            )
         );
 
-        if (isset($this->photo)) {
+        if (isset($this->photo) || isset($this->cv)) {
             return redirect()->route('profile.show');
         }
 
@@ -79,6 +90,21 @@ class UpdateProfileInformation extends Component
     }
 
     /**
+     * Delete user's profile cv.
+     *
+     * @return void
+     */
+    public function deleteProfileCv()
+    {
+        Storage::disk('public')->delete($this->state['searcher_cv_path']);
+
+        UserDetail::where('user_id', $this->state['id'])
+            ->update(['searcher_cv_path' => null]);
+
+        $this->emit('refresh-navigation-menu');
+    }
+
+    /**
      * Get the current user of the application.
      *
      * @return mixed
@@ -91,31 +117,31 @@ class UpdateProfileInformation extends Component
     public function render()
     {
         return view('livewire.profile.forms.update-profile-information', [
-            'countries' => Country::get()->transform(function ($item, $key) {
+            'countries' => Country::orderBy('name')->get()->transform(function ($item, $key) {
                 return (object) [
                     'name' => $item->name,
                     'value' => $item->id,
                 ];
             }),
-            'provinces' => Province::get()->where('country_id', $this->state['country_id'])->transform(function ($item) {
+            'provinces' => Province::where('country_id', $this->state['country_id'])->orderBy('name')->get()->transform(function ($item) {
                 return (object) [
                     'name' => $item->name,
                     'value' => $item->id,
                 ];
             }),
-            'cities' => City::get()->where('province_id', $this->state['province_id'])->transform(function ($item) {
+            'cities' => City::where('province_id', $this->state['province_id'])->orderBy('name')->get()->transform(function ($item) {
                 return (object) [
                     'name' => $item->name,
                     'value' => $item->id,
                 ];
             }),
-            'districts' => District::get()->where('city_id', $this->state['city_id'])->transform(function ($item) {
+            'districts' => District::where('city_id', $this->state['city_id'])->orderBy('name')->get()->transform(function ($item) {
                 return (object) [
                     'name' => $item->name,
                     'value' => $item->id,
                 ];
             }),
-            'villages' => Village::get()->where('district_id', $this->state['district_id'])->transform(function ($item) {
+            'villages' => Village::where('district_id', $this->state['district_id'])->orderBy('name')->get()->transform(function ($item) {
                 return (object) [
                     'name' => $item->name,
                     'value' => $item->id,

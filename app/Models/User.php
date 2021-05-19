@@ -69,4 +69,19 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role_id == 1;
+    }
+
+    public function isSearcher()
+    {
+        return $this->role_id == 2;
+    }
+
+    public function isRecruiter()
+    {
+        return $this->role_id == 3;
+    }
 }
