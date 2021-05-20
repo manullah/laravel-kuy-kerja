@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
             ProvincesSeeder::class,
             CitiesSeeder::class,
             DistrictsSeeder::class,
-            VillagesSeeder::class
+            VillagesSeeder::class,
+            TypeOfWorksSeeder::class,
+            WorkExperiencesSeeder::class,
         ]);
     }
 }
