@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('profile.profile-index')
+    @livewire('pages.profile')
 </x-app-layout>

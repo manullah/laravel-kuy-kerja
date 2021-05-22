@@ -1,3 +1,11 @@
 .card {
-    @apply min-w-0 p-8 bg-white rounded-lg shadow-sm dark:bg-gray-800;
+    @apply min-w-0 rounded-lg shadow-sm sm:overflow-hidden bg-white dark:bg-gray-800;
+}
+
+.card .card-body {
+    @apply p-4;
+}
+
+.card .card-footer {
+    @apply px-4 py-3 bg-gray-50 text-right sm:px-6 dark:bg-gray-700;
 }

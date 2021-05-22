@@ -1,3 +1,3 @@
 <x-app-layout>
-    Home
+    @livewire('pages.index')
 </x-app-layout>
