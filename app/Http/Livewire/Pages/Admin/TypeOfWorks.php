@@ -18,8 +18,7 @@ class TypeOfWorks extends Component
      * @var array
      */
     public $state = [
-        'name' => '',
-        'slug' => ''
+        'name' => null,
     ];
 
     public $typeOfWorkId = null;
@@ -33,7 +32,6 @@ class TypeOfWorks extends Component
 
         $this->fill(['state' => [
             'name' => $typeOfWork->name,
-            'slug' => $typeOfWork->slug
         ]]);
     }
 

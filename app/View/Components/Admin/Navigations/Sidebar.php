@@ -60,6 +60,13 @@ class Sidebar extends Component
                 'icon' => '',
                 'actived' => request()->routeIs('admin.work-experiences.*')
             ],
+            (object) [
+                'show' => Gate::allows('manage.job-vacancies'),
+                'title' => 'Job Vacancies',
+                'href' => route('admin.job-vacancies.index'),
+                'icon' => '',
+                'actived' => request()->routeIs('admin.job-vacancies.*')
+            ],
         ];
 
         return view('components.admin.navigations.sidebar', [

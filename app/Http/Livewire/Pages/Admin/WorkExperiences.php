@@ -18,8 +18,7 @@ class WorkExperiences extends Component
      * @var array
      */
     public $state = [
-        'name' => '',
-        'slug' => ''
+        'name' => null,
     ];
 
     public $workExperienceId = null;
@@ -33,7 +32,6 @@ class WorkExperiences extends Component
 
         $this->fill(['state' => [
             'name' => $workExperiences->name,
-            'slug' => $workExperiences->slug
         ]]);
     }
 

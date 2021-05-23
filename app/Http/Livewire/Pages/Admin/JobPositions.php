@@ -9,8 +9,8 @@ use Livewire\Component;
 
 class JobPositions extends Component
 {
-    use JobPositionTrait;
     use BaseAdminLivewireTrait;
+    use JobPositionTrait;
 
     /**
      * The component's state.
@@ -18,8 +18,7 @@ class JobPositions extends Component
      * @var array
      */
     public $state = [
-        'name' => '',
-        'slug' => ''
+        'name' => null,
     ];
 
     public $jobPositionId = null;
@@ -33,7 +32,6 @@ class JobPositions extends Component
 
         $this->fill(['state' => [
             'name' => $jobPosition->name,
-            'slug' => $jobPosition->slug
         ]]);
     }
 

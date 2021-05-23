@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\IndexController as AdminIndexController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/', function () {
     return view('pages.index');
 })->name('index');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
-    Route::get('/profile', [ProfileController::class, 'show'])
-        ->name('profile.show');
+    Route::get('/profile', function (Request $request) {
+        return view('pages.profile', [
+            'request' => $request,
+            'user' => $request->user(),
+        ]);
+    })->name('profile.show');
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', function () {
@@ -41,5 +42,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
         Route::get('work-experiences', function () {
             return view('pages.admin.work-experiences');
         })->name('work-experiences.index');
+
+        Route::get('job-vacancies', function () {
+            return view('pages.admin.job-vacancies');
+        })->name('job-vacancies.index');
     });
 });
