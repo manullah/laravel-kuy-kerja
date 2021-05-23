@@ -2,15 +2,15 @@
 
 namespace App\Http\Livewire\Pages\Admin;
 
+use App\Http\Traits\BaseAdminLivewireTrait;
 use App\Http\Traits\JobPositionTrait;
 use App\Models\JobPosition;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class JobPositions extends Component
 {
     use JobPositionTrait;
-    use WithPagination;
+    use BaseAdminLivewireTrait;
 
     /**
      * The component's state.
@@ -24,49 +24,24 @@ class JobPositions extends Component
 
     public $jobPositionId = null;
 
-    public $isStore = true;
-
-    public $search = '';
-
-    public $paginate = 10;
-
-    protected $updateQueryString = ['search'];
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updateState(string $name, string $slug)
-    {
-        $this->state = [
-            'name' => $name,
-            'slug' => $slug
-        ];
-    }
-
-    public function changeFormAction()
-    {
-        $this->isStore = !$this->isStore;
-        if ($this->isStore) {
-            $this->updateState('', '');
-        }
-    }
-
     public function showJP($id)
     {
         $jobPosition = JobPosition::find($id);
 
         $this->isStore = false;
         $this->jobPositionId = $jobPosition->id;
-        $this->updateState($jobPosition->name, $jobPosition->slug);
+
+        $this->fill(['state' => [
+            'name' => $jobPosition->name,
+            'slug' => $jobPosition->slug
+        ]]);
     }
 
     public function storeJP()
     {
         $jobPosition = $this->store($this->state);
 
-        $this->updateState('', '');
+        $this->reset(['state']);
 
         session()->flash('message', 'Job Position ' . $jobPosition['name'] . ' was stored!');
     }
@@ -75,7 +50,7 @@ class JobPositions extends Component
     {
         $jobPosition = $this->update($this->state, $this->jobPositionId);
 
-        $this->updateState('', '');
+        $this->reset(['state']);
 
         session()->flash('message', 'Job Position ' . $jobPosition['name'] . ' was updated!');
     }

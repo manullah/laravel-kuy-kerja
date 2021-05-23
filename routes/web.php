@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
-use App\Http\Controllers\Admin\JobPositionController as AdminJobPositionController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,16 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
     Route::get('/profile', [ProfileController::class, 'show'])
         ->name('profile.show');
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', [AdminIndexController::class, 'index'])->name('index');
-        Route::resource('/job-positions', AdminJobPositionController::class);
+
+        Route::get('/job-positions', function () {
+            return view('pages.admin.job-positions');
+        })->name('job-positions.index');
+
+        Route::get('/type-of-works', function () {
+            return view('pages.admin.type-of-works');
+        })->name('type-of-works.index');
     });
 });
