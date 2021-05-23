@@ -19,13 +19,13 @@
                     <div class="form-group">
                         <x-jet-label for="email" value="{{ __('Email') }}" class="label" />
                         <x-jet-input id="email" type="email" name="email" :value="old('email')" placeholder="Email..."
-                            class="form-control" required autofocus />
+                            class="input" required autofocus />
                     </div>
 
                     <div class="form-group">
                         <x-jet-label for="password" value="{{ __('Password') }}" class="label" />
                         <x-jet-input id="password" type="password" name="password" autocomplete="current-password"
-                            placeholder="Password..." class="form-control" required />
+                            placeholder="Password..." class="input" required />
                     </div>
 
                     <div class="form-group">

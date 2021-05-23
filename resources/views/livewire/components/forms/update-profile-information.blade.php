@@ -74,7 +74,7 @@
         <!-- Country -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="country_id" value="{{ __('Country') }}" />
-            <select id="country_id" class="mt-1 block w-full form-control" wire:model="state.country_id">
+            <select id="country_id" class="mt-1 block w-full input" wire:model="state.country_id">
                 <option value="null" disabled selected>Choose</option>
                 @foreach ($countries as $country)
                     <option value="{{ $country->value }}">{{ $country->name }}</option>
@@ -86,7 +86,7 @@
         <!-- Province -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="province_id" value="{{ __('Province') }}" />
-            <select id="province_id" class="mt-1 block w-full form-control" wire:model="state.province_id">
+            <select id="province_id" class="mt-1 block w-full input" wire:model="state.province_id">
                 <option value="null" disabled selected>Choose</option>
                 @foreach ($provinces as $province)
                     <option value="{{ $province->value }}">{{ $province->name }}</option>
@@ -98,7 +98,7 @@
         <!-- City -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="city_id" value="{{ __('City') }}" />
-            <select id="city_id" class="mt-1 block w-full form-control" wire:model="state.city_id">
+            <select id="city_id" class="mt-1 block w-full input" wire:model="state.city_id">
                 <option value="null" disabled selected>Choose</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->value }}">{{ $city->name }}</option>
@@ -110,7 +110,7 @@
         <!-- District -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="district_id" value="{{ __('District') }}" />
-            <select id="district_id" class="mt-1 block w-full form-control" wire:model="state.district_id">
+            <select id="district_id" class="mt-1 block w-full input" wire:model="state.district_id">
                 <option value="null" disabled selected>Choose</option>
                 @foreach ($districts as $district)
                     <option value="{{ $district->value }}">{{ $district->name }}</option>
@@ -122,7 +122,7 @@
         <!-- Village -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="village_id" value="{{ __('Village') }}" />
-            <select id="village_id" class="mt-1 block w-full form-control" wire:model="state.village_id">
+            <select id="village_id" class="mt-1 block w-full input" wire:model="state.village_id">
                 <option value="null" disabled selected>Choose</option>
                 @foreach ($villages as $village)
                     <option value="{{ $village->value }}">{{ $village->name }}</option>
@@ -134,8 +134,7 @@
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="address" value="{{ __('Address') }}" />
-            <textarea id="address" rows="3" class="mt-1 block w-full form-control"
-                wire:model="state.address"></textarea>
+            <textarea id="address" rows="3" class="mt-1 block w-full input" wire:model="state.address"></textarea>
             <x-jet-input-error for="address" class="mt-2" />
         </div>
 

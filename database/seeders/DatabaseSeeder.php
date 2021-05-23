@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             VillagesSeeder::class,
             TypeOfWorksSeeder::class,
             WorkExperiencesSeeder::class,
+            JobPositionsSeeder::class
         ]);
     }
 }

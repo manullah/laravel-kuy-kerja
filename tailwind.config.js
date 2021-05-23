@@ -220,7 +220,7 @@ module.exports = {
         require("@tailwindcss/forms"),
         require("tailwindcss-multi-theme"),
         require("@tailwindcss/custom-forms"),
-        plugin(({ addUtilities, e, theme, variants }) => {
+        plugin(({ addUtilities, e, theme, variants, addVariant }) => {
             const newUtilities = {};
             Object.entries(theme("colors")).map(([name, value]) => {
                 if (name === "transparent" || name === "current") return;
@@ -233,6 +233,15 @@ module.exports = {
             });
 
             addUtilities(newUtilities, variants("boxShadow"));
+
+            addVariant('important', ({ container }) => {
+                container.walkRules(rule => {
+                    rule.selector = `.\\!${rule.selector.slice(1)}`
+                    rule.walkDecls(decl => {
+                        decl.important = true
+                    });
+                });
+            });
         }),
     ],
 };

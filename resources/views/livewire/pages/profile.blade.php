@@ -22,7 +22,7 @@
                 @if ($tab->show && $tab->actived)
 
                     @if ($tab->id == 1)
-                        @livewire('profile.forms.update-profile-information')
+                        @livewire('components.forms.update-profile-information')
 
                         @if (Auth::user()->userDetail->searcher_cv_path)
                             <iframe src="{{ Auth::user()->userDetail->searcher_cv_path }}" frameborder="0"

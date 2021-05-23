@@ -19,13 +19,13 @@
                     <div class="form-group">
                         <x-jet-label for="name" value="{{ __('Full Name') }}" class="label" />
                         <x-jet-input id="name" type="text" name="name" :value="old('name')" placeholder="Name..."
-                            class="form-control" required autofocus autocomplete="name" />
+                            class="input" required autofocus autocomplete="name" />
                     </div>
 
                     <div class="form-group">
                         <x-jet-label for="email" value="{{ __('Email') }}" class="label" />
                         <x-jet-input id="email" type="email" name="email" :value="old('email')" placeholder="Email..."
-                            class="form-control" required />
+                            class="input" required />
                     </div>
 
                     <label class="form-group">
@@ -39,14 +39,13 @@
                     <div class="form-group">
                         <x-jet-label for="password" value="{{ __('Password') }}" class="label" />
                         <x-jet-input id="password" type="password" name="password" autocomplete="new-password"
-                            placeholder="Password..." class="form-control" required />
+                            placeholder="Password..." class="input" required />
                     </div>
 
                     <div class="form-group">
                         <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" class="label" />
                         <x-jet-input id="password_confirmation" type="password" name="password_confirmation"
-                            autocomplete="new-password" placeholder="Confirm Password..." class="form-control"
-                            required />
+                            autocomplete="new-password" placeholder="Confirm Password..." class="input" required />
                     </div>
 
                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
