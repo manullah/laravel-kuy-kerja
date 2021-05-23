@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Pages\Admin;
 
 use App\Http\Traits\BaseAdminLivewireTrait;
-use App\Http\Traits\TypeOfWorksTrait;
+use App\Http\Traits\TypeOfWorkTrait;
 use App\Models\TypeOfWork;
 use Livewire\Component;
 
 class TypeOfWorks extends Component
 {
     use BaseAdminLivewireTrait;
-    use TypeOfWorksTrait;
+    use TypeOfWorkTrait;
 
     /**
      * The component's state.

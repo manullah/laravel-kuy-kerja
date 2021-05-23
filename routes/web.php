@@ -32,5 +32,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
         Route::get('/type-of-works', function () {
             return view('pages.admin.type-of-works');
         })->name('type-of-works.index');
+
+        Route::get('work-experiences', function () {
+            return view('pages.admin.work-experiences');
+        })->name('work-experiences.index');
     });
 });

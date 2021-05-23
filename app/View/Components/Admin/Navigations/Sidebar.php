@@ -52,7 +52,14 @@ class Sidebar extends Component
                 'href' => route('admin.type-of-works.index'),
                 'icon' => '',
                 'actived' => request()->routeIs('admin.type-of-works.*')
-            ]
+            ],
+            (object) [
+                'show' => Gate::allows('manage.work-experiences'),
+                'title' => 'Work Experiences',
+                'href' => route('admin.work-experiences.index'),
+                'icon' => '',
+                'actived' => request()->routeIs('admin.work-experiences.*')
+            ],
         ];
 
         return view('components.admin.navigations.sidebar', [

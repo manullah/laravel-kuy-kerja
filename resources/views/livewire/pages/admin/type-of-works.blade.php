@@ -1,5 +1,5 @@
 <div class="container px-6 mx-auto grid">
-    <h1 class="my-6">Job Position</h1>
+    <h1 class="my-6">Type of Works</h1>
 
     @if (session()->has('message'))
         <div

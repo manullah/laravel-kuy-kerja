@@ -50,8 +50,7 @@
                             <span wire:key="paginator-page{{ $page }}">
                                 @if ($page == $paginator->currentPage())
                                     <li>
-                                        <button
-                                            class="px-3 py-1 text-white transition-colors duration-150 bg-primary-600 border border-r-0 border-primary-600 rounded-md focus:outline-none focus:shadow-outline-primary">
+                                        <button class="button primary px-3 py-1">
                                             {{ $page }}
                                         </button>
                                     </li>
