@@ -16,14 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+// Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/', function () {
+    return view('pages.index');
+})->name('index');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
     Route::get('/profile', [ProfileController::class, 'show'])
         ->name('profile.show');
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::get('/', [AdminIndexController::class, 'index'])->name('index');
+        Route::get('/', function () {
+            return view('pages.admin.index');
+        })->name('index');
 
         Route::get('/job-positions', function () {
             return view('pages.admin.job-positions');
