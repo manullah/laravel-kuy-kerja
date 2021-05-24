@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Pages\Admin;
 
-use App\Http\Traits\BaseAdminLivewireTrait;
+use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\Livewire\JobVacanciesSearchDropdownTrait;
 use App\Models\JobPosition;
 use App\Models\TypeOfWork;
@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class JobVacancies extends Component
 {
-    use BaseAdminLivewireTrait;
+    use BaseAdminPageTrait;
     use JobVacanciesSearchDropdownTrait;
 
     /**

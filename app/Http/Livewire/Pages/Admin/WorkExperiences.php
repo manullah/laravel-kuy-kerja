@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Pages\Admin;
 
-use App\Http\Traits\BaseAdminLivewireTrait;
+use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\WorkExperienceTrait;
 use App\Models\WorkExperience;
 use Livewire\Component;
 
 class WorkExperiences extends Component
 {
-    use BaseAdminLivewireTrait;
+    use BaseAdminPageTrait;
     use WorkExperienceTrait;
 
     /**
@@ -23,7 +23,7 @@ class WorkExperiences extends Component
 
     public $workExperienceId = null;
 
-    public function showWE($id)
+    public function triggerShow($id)
     {
         $workExperiences = WorkExperience::find($id);
 
@@ -35,7 +35,7 @@ class WorkExperiences extends Component
         ]]);
     }
 
-    public function storeWE()
+    public function triggerStore()
     {
         $workExperiences = $this->store($this->state);
 
@@ -44,7 +44,7 @@ class WorkExperiences extends Component
         session()->flash('message', 'Work Experience ' . $workExperiences['name'] . ' was stored!');
     }
 
-    public function updateWE()
+    public function triggerUpdate()
     {
         $workExperiences = $this->update($this->state, $this->workExperienceId);
 
@@ -53,7 +53,7 @@ class WorkExperiences extends Component
         session()->flash('message', 'Work Experience ' . $workExperiences['name'] . ' was updated!');
     }
 
-    public function destroyWE($id)
+    public function triggerDestroy($id)
     {
         $workExperiences = $this->destroy($id);
 

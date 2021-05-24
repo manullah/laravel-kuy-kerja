@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Traits;
+namespace App\Http\Traits\Livewire;
 
 use Livewire\WithPagination;
 
-trait BaseAdminLivewireTrait
+trait BaseAdminPageTrait
 {
     use WithPagination;
 
@@ -21,9 +21,8 @@ trait BaseAdminLivewireTrait
         $this->resetPage();
     }
 
-    public function changeFormAction()
+    public function updatedIsStore($value)
     {
-        $this->isStore = !$this->isStore;
         if ($this->isStore) {
             $this->reset(['state']);
         }

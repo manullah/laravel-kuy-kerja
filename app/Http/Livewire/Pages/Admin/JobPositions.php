@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Pages\Admin;
 
-use App\Http\Traits\BaseAdminLivewireTrait;
+use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\JobPositionTrait;
 use App\Models\JobPosition;
 use Livewire\Component;
 
 class JobPositions extends Component
 {
-    use BaseAdminLivewireTrait;
+    use BaseAdminPageTrait;
     use JobPositionTrait;
 
     /**
@@ -23,7 +23,7 @@ class JobPositions extends Component
 
     public $jobPositionId = null;
 
-    public function showJP($id)
+    public function triggerShow($id)
     {
         $jobPosition = JobPosition::find($id);
 
@@ -35,7 +35,7 @@ class JobPositions extends Component
         ]]);
     }
 
-    public function storeJP()
+    public function triggerStore()
     {
         $jobPosition = $this->store($this->state);
 
@@ -44,7 +44,7 @@ class JobPositions extends Component
         session()->flash('message', 'Job Position ' . $jobPosition['name'] . ' was stored!');
     }
 
-    public function updateJP()
+    public function triggerUpdate()
     {
         $jobPosition = $this->update($this->state, $this->jobPositionId);
 
@@ -53,7 +53,7 @@ class JobPositions extends Component
         session()->flash('message', 'Job Position ' . $jobPosition['name'] . ' was updated!');
     }
 
-    public function destroyJP($id)
+    public function triggerDestroy($id)
     {
         $jobPosition = $this->destroy($id);
 

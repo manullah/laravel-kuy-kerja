@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Pages\Admin;
 
-use App\Http\Traits\BaseAdminLivewireTrait;
+use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\TypeOfWorkTrait;
 use App\Models\TypeOfWork;
 use Livewire\Component;
 
 class TypeOfWorks extends Component
 {
-    use BaseAdminLivewireTrait;
+    use BaseAdminPageTrait;
     use TypeOfWorkTrait;
 
     /**
@@ -23,7 +23,7 @@ class TypeOfWorks extends Component
 
     public $typeOfWorkId = null;
 
-    public function showTOW($id)
+    public function triggerShow($id)
     {
         $typeOfWork = TypeOfWork::find($id);
 
@@ -35,7 +35,7 @@ class TypeOfWorks extends Component
         ]]);
     }
 
-    public function storeTOW()
+    public function triggerStore()
     {
         $typeOfWork = $this->store($this->state);
 
@@ -44,7 +44,7 @@ class TypeOfWorks extends Component
         session()->flash('message', 'Type fo Work ' . $typeOfWork['name'] . ' was stored!');
     }
 
-    public function updateTOW()
+    public function triggerUpdate()
     {
         $typeOfWork = $this->update($this->state, $this->typeOfWorkId);
 
@@ -53,7 +53,7 @@ class TypeOfWorks extends Component
         session()->flash('message', 'Type fo Work ' . $typeOfWork['name'] . ' was updated!');
     }
 
-    public function destroyTOW($id)
+    public function triggerDestroy($id)
     {
         $typeOfWork = $this->destroy($id);
 
