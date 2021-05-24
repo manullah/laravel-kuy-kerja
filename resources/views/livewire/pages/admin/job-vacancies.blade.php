@@ -16,9 +16,28 @@
             <form @if ($isStore) wire:submit.prevent="storeTOW" @else wire:submit.prevent="updateTOW" @endif class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <x-jet-label for="name" value="{{ __('Name') }}" class="label" />
-                        <x-jet-input id="name" type="text" name="name" wire:model="state.name" placeholder="Name..." />
-                        <x-jet-input-error for="name" class="mt-2" />
+                        <x-jet-label for="title" value="{{ __('Title') }}" class="label" />
+                        <x-jet-input id="title" type="text" name="title" wire:model="state.title"
+                            placeholder="Title..." />
+                        <x-jet-input-error for="title" class="mt-2" />
+                    </div>
+
+                    <div class="form-group">
+                        <x-jet-label for="type_of_work" value="{{ __('Type of Work') }}" class="label" />
+                        @livewire('components.search-dropdown.dropdown-type-of-work')
+                        <x-jet-input-error for="title" class="mt-2" />
+                    </div>
+
+                    <div class="form-group">
+                        <x-jet-label for="work_experience" value="{{ __('Work Experiences') }}" class="label" />
+
+                        <x-jet-input-error for="title" class="mt-2" />
+                    </div>
+
+                    <div class="form-group">
+                        <x-jet-label for="job_position" value="{{ __('Job Position') }}" class="label" />
+
+                        <x-jet-input-error for="title" class="mt-2" />
                     </div>
                 </div>
                 <div class="card-footer flex justify-between items-center">

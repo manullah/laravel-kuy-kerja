@@ -1,5 +1,5 @@
 .card {
-    @apply min-w-0 rounded-lg shadow-sm sm:overflow-hidden bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700;
+    @apply min-w-0 rounded-lg shadow-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700;
 }
 
 .card .card-body {

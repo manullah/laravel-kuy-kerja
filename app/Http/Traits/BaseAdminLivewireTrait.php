@@ -21,14 +21,6 @@ trait BaseAdminLivewireTrait
         $this->resetPage();
     }
 
-    // public function updateState(string $name, string $slug)
-    // {
-    //     $this->state = [
-    //         'name' => $name,
-    //         'slug' => $slug
-    //     ];
-    // }
-
     public function changeFormAction()
     {
         $this->isStore = !$this->isStore;
