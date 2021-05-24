@@ -29,14 +29,14 @@
                     </div>
 
                     <div class="form-group">
-                        <x-jet-label for="work_experience" value="{{ __('Work Experiences') }}" class="label" />
-
+                        <x-jet-label for="work_experience" value="{{ __('Work Experience') }}" class="label" />
+                        @livewire('components.search-dropdown.dropdown-work-experience')
                         <x-jet-input-error for="title" class="mt-2" />
                     </div>
 
                     <div class="form-group">
                         <x-jet-label for="job_position" value="{{ __('Job Position') }}" class="label" />
-
+                        @livewire('components.search-dropdown.dropdown-job-position')
                         <x-jet-input-error for="title" class="mt-2" />
                     </div>
                 </div>
