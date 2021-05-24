@@ -63,9 +63,10 @@ class JobPositions extends Component
     public function render()
     {
         return view('livewire.pages.admin.job-positions', [
-            'jobPositions' => $this->search == null
-                ? JobPosition::latest()->paginate($this->paginate)
-                : JobPosition::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
-        ]);
+                'jobPositions' => $this->search == null
+                    ? JobPosition::latest()->paginate($this->paginate)
+                    : JobPosition::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
+            ])
+            ->layout('layouts.admin');;
     }
 }

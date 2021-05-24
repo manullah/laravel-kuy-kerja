@@ -4,9 +4,6 @@ namespace App\Http\Livewire\Pages\Admin;
 
 use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\Livewire\JobVacanciesSearchDropdownTrait;
-use App\Models\JobPosition;
-use App\Models\TypeOfWork;
-use App\Models\WorkExperience;
 use Livewire\Component;
 
 class JobVacancies extends Component
@@ -39,13 +36,16 @@ class JobVacancies extends Component
 
     protected $listeners = [
         'chooseTypeOfWork',
-        'changeTypeOfWork'
+        'changeTypeOfWork',
+        'chooseWorkExperience',
+        'changeWorkExperience',
+        'chooseJobPosition',
+        'changeJobPosition',
     ];
 
     public function render()
     {
-        return view('livewire.pages.admin.job-vacancies', [
-            'typeofWorks' => [],
-        ]);
+        return view('livewire.pages.admin.job-vacancies')
+            ->layout('layouts.admin');;
     }
 }

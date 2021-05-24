@@ -64,9 +64,7 @@ class Profile extends Component
         ];
 
         return view('livewire.pages.profile', [
-            'tabs' => $tabs,
-            'title' => 'zxczc'
-            // 'pdf' => response()->file('http://127.0.0.1:8000/storage/searcher-cv/4o9goQdprzTaUEX1wdrREvt7m7tRnySd4si3jq5q.pdf')
-        ]);
+                'tabs' => $tabs,
+            ]);
     }
 }

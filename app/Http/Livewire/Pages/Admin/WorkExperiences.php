@@ -63,9 +63,10 @@ class WorkExperiences extends Component
     public function render()
     {
         return view('livewire.pages.admin.work-experiences', [
-            'workExperiences' => $this->search == null
-                ? WorkExperience::latest()->paginate($this->paginate)
-                : WorkExperience::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
-        ]);
+                'workExperiences' => $this->search == null
+                    ? WorkExperience::latest()->paginate($this->paginate)
+                    : WorkExperience::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
+            ])
+            ->layout('layouts.admin');;
     }
 }

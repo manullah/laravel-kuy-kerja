@@ -63,9 +63,10 @@ class TypeOfWorks extends Component
     public function render()
     {
         return view('livewire.pages.admin.type-of-works', [
-            'typeOfWorks' => $this->search == null
-                ? TypeOfWork::latest()->paginate($this->paginate)
-                : TypeOfWork::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
-        ]);
+                'typeOfWorks' => $this->search == null
+                    ? TypeOfWork::latest()->paginate($this->paginate)
+                    : TypeOfWork::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
+            ])
+            ->layout('layouts.admin');;
     }
 }

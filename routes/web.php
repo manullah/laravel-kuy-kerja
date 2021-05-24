@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Livewire\Pages\Admin\Index as AdminIndex;
+use App\Http\Livewire\Pages\Admin\JobPositions as AdminJobPositions;
+use App\Http\Livewire\Pages\Admin\JobVacancies as AdminJobVacancies;
+use App\Http\Livewire\Pages\Admin\TypeOfWorks as AdminTypeOfWorks;
+use App\Http\Livewire\Pages\Admin\WorkExperiences as AdminWorkExperiences;
+use App\Http\Livewire\Pages\Index;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-})->name('index');
+Route::get('/', Index::class)->name('index');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
     Route::get('/profile', function (Request $request) {
@@ -27,24 +31,14 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
     })->name('profile.show');
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::get('/', function () {
-            return view('pages.admin.index');
-        })->name('index');
+        Route::get('/', AdminIndex::class)->name('index');
 
-        Route::get('/job-positions', function () {
-            return view('pages.admin.job-positions');
-        })->name('job-positions.index');
+        Route::get('/job-positions', AdminJobPositions::class)->name('job-positions.index');
 
-        Route::get('/type-of-works', function () {
-            return view('pages.admin.type-of-works');
-        })->name('type-of-works.index');
+        Route::get('/type-of-works', AdminTypeOfWorks::class)->name('type-of-works.index');
 
-        Route::get('work-experiences', function () {
-            return view('pages.admin.work-experiences');
-        })->name('work-experiences.index');
+        Route::get('work-experiences', AdminWorkExperiences::class)->name('work-experiences.index');
 
-        Route::get('job-vacancies', function () {
-            return view('pages.admin.job-vacancies');
-        })->name('job-vacancies.index');
+        Route::get('job-vacancies', AdminJobVacancies::class)->name('job-vacancies.index');
     });
 });
