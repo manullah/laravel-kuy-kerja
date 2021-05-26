@@ -48,7 +48,7 @@ class WorkExperiences extends Component
     {
         $workExperiences = $this->update($this->state, $this->workExperienceId);
 
-        $this->reset(['state']);
+        $this->reset(['state', 'isStore']);
 
         session()->flash('message', 'Work Experience ' . $workExperiences['name'] . ' was updated!');
     }

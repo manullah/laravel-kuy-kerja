@@ -18,6 +18,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/950h9e4w6ghsa51btqxfimcz6gwkoj6zavbz1xxj4zg53w8z/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    @yield('scripts')
 </head>
 
 <body x-data="{ isSideMenuOpen: true, darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"

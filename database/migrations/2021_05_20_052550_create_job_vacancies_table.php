@@ -23,6 +23,9 @@ class CreateJobVacanciesTable extends Migration
             $table->foreignId('work_experience_id')->nullable();
             $table->foreignId('job_position_id')->nullable();
             $table->foreignId('created_by')->nullable();
+            $table->foreignId('country_id')->nullable();
+            $table->foreignId('province_id')->nullable();
+            $table->foreignId('city_id')->nullable();
             $table->timestamps();
         });
     }

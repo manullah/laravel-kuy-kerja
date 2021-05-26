@@ -48,7 +48,7 @@ class JobPositions extends Component
     {
         $jobPosition = $this->update($this->state, $this->jobPositionId);
 
-        $this->reset(['state']);
+        $this->reset(['state', 'isStore']);
 
         session()->flash('message', 'Job Position ' . $jobPosition['name'] . ' was updated!');
     }

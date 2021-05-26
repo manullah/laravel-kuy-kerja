@@ -32,8 +32,8 @@ class DropdownTypeOfWork extends Component
     {
         return view('livewire.components.search-dropdown.dropdown-type-of-work', [
             'options' => $this->search
-                ? TypeOfWork::latest()->where('name', 'like', '%' . $this->search . '%')->get()
-                : TypeOfWork::latest()->get()
+                ? TypeOfWork::where('name', 'like', '%' . $this->search . '%')->orderBy('name')->paginate(5)
+                : TypeOfWork::orderBy('name')->paginate(5)
         ]);
     }
 }

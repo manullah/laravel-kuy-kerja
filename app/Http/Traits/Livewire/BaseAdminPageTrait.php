@@ -25,6 +25,7 @@ trait BaseAdminPageTrait
     {
         if ($this->isStore) {
             $this->reset(['state']);
+            $this->emit('changedIsStore');
         }
     }
 }

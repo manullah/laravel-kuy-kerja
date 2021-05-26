@@ -20,11 +20,13 @@ class DropdownWorkExperience extends Component
 
     public function chooseOption($option)
     {
+        // dd($option);
         $this->emit('chooseWorkExperience', $option);
     }
 
     public function emitSearchWorkExperience($search)
     {
+        // dd($search);
         $this->search = $search;
     }
 
@@ -32,8 +34,8 @@ class DropdownWorkExperience extends Component
     {
         return view('livewire.components.search-dropdown.dropdown-work-experience', [
             'options' => $this->search
-                ? WorkExperience::latest()->where('name', 'like', '%' . $this->search . '%')->get()
-                : WorkExperience::latest()->get()
+                ? WorkExperience::where('name', 'like', '%' . $this->search . '%')->orderBy('name')->paginate(5)
+                : WorkExperience::orderBy('name')->paginate(5)
         ]);
     }
 }

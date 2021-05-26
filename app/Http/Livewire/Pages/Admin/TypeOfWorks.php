@@ -48,7 +48,7 @@ class TypeOfWorks extends Component
     {
         $typeOfWork = $this->update($this->state, $this->typeOfWorkId);
 
-        $this->reset(['state']);
+        $this->reset(['state', 'isStore']);
 
         session()->flash('message', 'Type fo Work ' . $typeOfWork['name'] . ' was updated!');
     }

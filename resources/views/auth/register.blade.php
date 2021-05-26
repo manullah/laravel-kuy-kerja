@@ -16,6 +16,14 @@
                         Create Account
                     </h1>
 
+                    <label class="form-group">
+                        <div for="role_id" class="label">{{ __('Register as') }}</div>
+                        <select name="role_id" class="select" required>
+                            <option value="2" @if (old('role_id') == 2) selected @endif>Searcher</option>
+                            <option value="3" @if (old('role_id') == 3) selected @endif>Recruiter</option>
+                        </select>
+                    </label>
+
                     <div class="form-group">
                         <x-jet-label for="name" value="{{ __('Full Name') }}" class="label" />
                         <x-jet-input id="name" type="text" name="name" :value="old('name')" placeholder="Name..."
@@ -27,14 +35,6 @@
                         <x-jet-input id="email" type="email" name="email" :value="old('email')" placeholder="Email..."
                             class="input" required />
                     </div>
-
-                    <label class="form-group">
-                        <div for="role_id" class="label">{{ __('Register as') }}</div>
-                        <select name="role_id" class="select" required>
-                            <option value="2" @if (old('role_id') == 2) selected @endif>Searcher</option>
-                            <option value="3" @if (old('role_id') == 3) selected @endif>Recruiter</option>
-                        </select>
-                    </label>
 
                     <div class="form-group">
                         <x-jet-label for="password" value="{{ __('Password') }}" class="label" />

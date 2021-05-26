@@ -15,7 +15,13 @@ class WorkExperiencesSeeder extends Seeder
      */
     public function run()
     {
-        $workExperiences = ['First Graduate', '1 Year', '2 Year', '3 Year', '4 Year'];
+        $workExperiences = [
+            'First Graduate',
+            '1 Tahun',
+            '2 Tahun',
+            '3 Tahun',
+            '4 Tahun'
+        ];
 
         foreach ($workExperiences as $key => $value) {
             WorkExperience::create([

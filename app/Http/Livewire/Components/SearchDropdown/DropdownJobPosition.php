@@ -32,8 +32,8 @@ class DropdownJobPosition extends Component
     {
         return view('livewire.components.search-dropdown.dropdown-job-position', [
             'options' => $this->search
-                ? JobPosition::latest()->where('name', 'like', '%' . $this->search . '%')->get()
-                : JobPosition::latest()->get()
+                ? JobPosition::where('name', 'like', '%' . $this->search . '%')->orderBy('name')->paginate(5)
+                : JobPosition::orderBy('name')->paginate(5)
         ]);
     }
 }

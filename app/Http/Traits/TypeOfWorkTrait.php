@@ -9,6 +9,18 @@ use Illuminate\Validation\Rule;
 
 trait TypeOfWorkTrait
 {
+    public function validator(array $data, array $validatorName = [])
+    {
+        if (array_key_exists('name', $validatorName)) {
+            $data[$validatorName['name']] = $data['name'];
+            unset($data['name']);
+        }
+
+        Validator::make($data, [
+            array_key_exists('name', $validatorName) ? $validatorName['name'] : 'name' => 'required|unique:type_of_works'
+        ])->validate();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -22,7 +34,7 @@ trait TypeOfWorkTrait
         ])->validate();
 
         $typeOfWork = TypeOfWork::create([
-            'name' => $data['name'],
+            'name' => ucwords($data['name']),
             'slug' => Str::slug($data['name'])
         ]);
 
@@ -44,7 +56,7 @@ trait TypeOfWorkTrait
 
         $typeOfWork = TypeOfWork::findOrFail($id);
         $typeOfWork->update([
-            'name' => $data['name'],
+            'name' => ucwords($data['name']),
             'slug' => Str::slug($data['name'])
         ]);
 
@@ -61,6 +73,21 @@ trait TypeOfWorkTrait
     {
         $typeOfWork = TypeOfWork::findOrFail($id);
         $typeOfWork->delete();
+
+        return $typeOfWork;
+    }
+
+    public function updateOrCreate($condition, array $data, array $validatorName = [])
+    {
+        $this->validator($data, $validatorName);
+
+        $typeOfWork = TypeOfWork::updateOrCreate(
+            $condition,
+            [
+                'name' => ucwords($data['name']),
+                'slug' => Str::slug($data['name'])
+            ]
+        );
 
         return $typeOfWork;
     }

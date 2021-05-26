@@ -9,6 +9,18 @@ use Illuminate\Validation\Rule;
 
 trait JobPositionTrait
 {
+    public function validator(array $data, array $validatorName = [])
+    {
+        if (array_key_exists('name', $validatorName)) {
+            $data[$validatorName['name']] = $data['name'];
+            unset($data['name']);
+        }
+
+        Validator::make($data, [
+            array_key_exists('name', $validatorName) ? $validatorName['name'] : 'name' => 'required|unique:work_experiences'
+        ])->validate();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -22,7 +34,7 @@ trait JobPositionTrait
         ])->validate();
 
         $jobPosition = JobPosition::create([
-            'name' => $data['name'],
+            'name' => ucwords($data['name']),
             'slug' => Str::slug($data['name'])
         ]);
 
@@ -44,7 +56,7 @@ trait JobPositionTrait
 
         $jobPosition = JobPosition::findOrFail($id);
         $jobPosition->update([
-            'name' => $data['name'],
+            'name' => ucwords($data['name']),
             'slug' => Str::slug($data['name'])
         ]);
 
@@ -61,6 +73,21 @@ trait JobPositionTrait
     {
         $jobPosition = JobPosition::findOrFail($id);
         $jobPosition->delete();
+
+        return $jobPosition;
+    }
+
+    public function updateOrCreate($condition, array $data, array $validatorName = [])
+    {
+        $this->validator($data, $validatorName);
+
+        $jobPosition = JobPosition::updateOrCreate(
+            $condition,
+            [
+                'name' => ucwords($data['name']),
+                'slug' => Str::slug($data['name'])
+            ]
+        );
 
         return $jobPosition;
     }

@@ -16,9 +16,9 @@ class TypeOfWorksSeeder extends Seeder
     public function run()
     {
         $typeOfWorks = [
-            'Full Time',
-            'Part Time',
-            'Contract'
+            'Penuh Waktu',
+            'Paruh Waktu',
+            'Kontrak'
         ];
 
         foreach ($typeOfWorks as $key => $value) {

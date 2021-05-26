@@ -45,4 +45,18 @@ trait JobVacanciesSearchDropdownTrait
         $this->state['job_position'] = null;
         $this->stringSearchDropdown['job_position'] = $value;
     }
+
+    public function chooseCreatedBy($option)
+    {
+        $this->state['created_by'] = $option['id'];
+        $this->stringSearchDropdown['created_by'] = $option['name'];
+
+        $this->emit('emitSearchCreatedBy', $option['name']);
+    }
+
+    public function changeCreatedBy($value)
+    {
+        $this->state['created_by'] = null;
+        $this->stringSearchDropdown['created_by'] = $value;
+    }
 }
