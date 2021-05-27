@@ -16,7 +16,7 @@ class CreateJobVacanciesTable extends Migration
         Schema::create('job_vacancies', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255)->nullable();
-            $table->string('slug', 255)->nullable();
+            $table->string('slug', 255)->unique()->nullable();
             $table->text('description')->nullable();
             $table->text('additional_information')->nullable();
             $table->foreignId('type_of_work_id')->nullable();

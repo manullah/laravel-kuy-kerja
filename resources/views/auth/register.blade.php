@@ -1,5 +1,6 @@
 <x-blank-layout>
-    <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div x-data="{ role: 2 }"
+        class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div class="flex flex-col overflow-y-auto md:flex-row">
             <div class="h-32 md:h-auto md:w-1/2">
                 <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
@@ -18,14 +19,15 @@
 
                     <label class="form-group">
                         <div for="role_id" class="label">{{ __('Register as') }}</div>
-                        <select name="role_id" class="select" required>
-                            <option value="2" @if (old('role_id') == 2) selected @endif>Searcher</option>
-                            <option value="3" @if (old('role_id') == 3) selected @endif>Recruiter</option>
+                        <select name="role_id" class="input" required x-on:change="role = $event.target.value">
+                            <option value="2" @if (old('role_id') == 2) selected @endif x-on:click="role = 2">Searcher</option>
+                            <option value="3" @if (old('role_id') == 3) selected @endif x-on:click="role = 3">Recruiter</option>
                         </select>
                     </label>
 
                     <div class="form-group">
-                        <x-jet-label for="name" value="{{ __('Full Name') }}" class="label" />
+                        <x-jet-label x-show="role == 2" for="name" value="{{ __('Full Name') }}" class="label" />
+                        <x-jet-label x-show="role == 3" for="name" value="{{ __('Company Name') }}" class="label" />
                         <x-jet-input id="name" type="text" name="name" :value="old('name')" placeholder="Name..."
                             class="input" required autofocus autocomplete="name" />
                     </div>

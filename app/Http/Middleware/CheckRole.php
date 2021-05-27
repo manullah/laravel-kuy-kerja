@@ -20,11 +20,11 @@ class CheckRole
             abort(403);
         }
 
-        if ($role == 'recruiter' && auth()->user()->role_id != 2) {
+        if ($role == 'searcher' && auth()->user()->role_id != 2) {
             abort(403);
         }
 
-        if ($role == 'searcher' && auth()->user()->role_id != 3) {
+        if ($role == 'recruiter' && auth()->user()->role_id != 3) {
             abort(403);
         }
 

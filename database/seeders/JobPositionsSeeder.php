@@ -16,7 +16,7 @@ class JobPositionsSeeder extends Seeder
     public function run()
     {
         $jobPosition = [
-            'Manager',
+            'Manager'
         ];
 
         foreach ($jobPosition as $key => $value) {
