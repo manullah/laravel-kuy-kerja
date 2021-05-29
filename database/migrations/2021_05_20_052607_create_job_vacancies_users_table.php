@@ -17,6 +17,7 @@ class CreateJobVacanciesUsersTable extends Migration
             $table->id();
             $table->foreignId('job_vacancies_id')->nullable();
             $table->foreignId('user_id')->nullable();
+            $table->string('status', 255)->nullable();
             $table->timestamps();
         });
     }

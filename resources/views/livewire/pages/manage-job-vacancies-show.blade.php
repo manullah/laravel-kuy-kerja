@@ -6,7 +6,7 @@
                     {{ $jobVacancy->title }}
                 </h2>
                 <p class="mt-1 max-w-2xl text-sm">
-                    Informasi lowongan
+                    {{ Auth::user()->name }}
                 </p>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:px-6">

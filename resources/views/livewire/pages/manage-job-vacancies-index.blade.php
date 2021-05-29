@@ -1,5 +1,5 @@
 <div>
-    <h1 class="mb-6">Lowongan Kerja</h1>
+    <h1 class="mb-6">Kelola Lowongan Kerja</h1>
 
     @if (session()->has('message'))
         <div
@@ -11,8 +11,6 @@
     <div class="grid gap-6 grid-cols-1 mb-6">
         {{-- Manage Job Vacancies --}}
         <div>
-            <h4 class="mb-4 ">Kelola Lowongan Kerja</h4>
-
             <form @if ($isStore) wire:submit.prevent="triggerStore" @else wire:submit.prevent="triggerUpdate" @endif class="card">
                 <div class="card-body">
 
@@ -93,6 +91,9 @@
                         </div>
                     </div>
 
+                    @error('slug')
+                        <p class="invalid-feedback">Lowongan ini telah dibuat</p>
+                    @enderror
                 </div>
                 <div class="card-footer flex justify-between items-center">
                     <span>
@@ -161,7 +162,7 @@
                                         </svg>
                                     </button>
                                     <button
-                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-primary-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Delete"
                                         wire:click.prevent="triggerDestroy('{{ $jobVacancy->slug }}')" title="Hapus">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -170,7 +171,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <a class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-primary-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                    <a class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-blue-500 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit"
                                         href="{{ route('manage-job-vacancies.show', $jobVacancy->slug) }}"
                                         title="Detail">

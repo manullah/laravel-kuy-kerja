@@ -8,6 +8,7 @@ use App\Http\Livewire\Pages\Admin\WorkExperiences as AdminWorkExperiences;
 use App\Http\Livewire\Pages\Index;
 use App\Http\Livewire\Pages\ManageJobVacanciesIndex;
 use App\Http\Livewire\Pages\ManageJobVacanciesShow;
+use App\Http\Livewire\Pages\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,12 +26,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Index::class)->name('index');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function() {
-    Route::get('/profile', function (Request $request) {
-        return view('pages.profile', [
-            'request' => $request,
-            'user' => $request->user(),
-        ]);
-    })->name('profile.show');
+    Route::get('/profile', Profile::class)->name('profile.show');
+    // Route::get('/profile', function (Request $request) {
+    //     return view('pages.profile', [
+    //         'request' => $request,
+    //         'user' => $request->user(),
+    //     ]);
+    // })->name('profile.show');
 
     Route::group(['middleware' => 'role:recruiter'], function() {
         Route::get('/manage-job-vacancies', ManageJobVacanciesIndex::class)->name('manage-job-vacancies.index');

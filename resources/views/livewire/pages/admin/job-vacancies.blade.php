@@ -99,6 +99,9 @@
                         </div>
                     </div>
 
+                    @error('slug')
+                        <p class="invalid-feedback">Lowongan ini telah dibuat</p>
+                    @enderror
                 </div>
                 <div class="card-footer flex justify-between items-center">
                     <span>

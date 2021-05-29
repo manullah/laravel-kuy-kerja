@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Pages\Admin;
 
 use App\Http\Traits\JobPositionTrait;
-use App\Http\Traits\JobVacanciesTrait;
+use App\Http\Traits\JobVacancyTrait;
 use App\Http\Traits\Livewire\BaseAdminPageTrait;
 use App\Http\Traits\Livewire\JobVacanciesSearchDropdownTrait;
 use App\Http\Traits\TypeOfWorkTrait;
@@ -18,12 +18,12 @@ use Livewire\Component;
 class JobVacancies extends Component
 {
     use BaseAdminPageTrait, JobVacanciesSearchDropdownTrait;
-    use JobVacanciesTrait, TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait {
-        JobVacanciesTrait::validator insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
-        JobVacanciesTrait::store insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
-        JobVacanciesTrait::update insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
-        JobVacanciesTrait::destroy insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
-        JobVacanciesTrait::updateOrCreate insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
+    use JobVacancyTrait, TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait {
+        JobVacancyTrait::validator insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
+        JobVacancyTrait::store insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
+        JobVacancyTrait::update insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
+        JobVacancyTrait::destroy insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
+        JobVacancyTrait::updateOrCreate insteadof TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait;
 
         TypeOfWorkTrait::validator as validatorTypeOfWork;
         TypeOfWorkTrait::store as storeTypeOfWork;

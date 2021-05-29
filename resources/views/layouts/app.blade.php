@@ -23,10 +23,8 @@
     @yield('scripts')
 </head>
 
-<body
-    x-data="{ isSideMenuOpen: (window.matchMedia('only screen and (min-width: 760px)').matches === true), darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
-    :class="{ 'theme-dark': darkTheme }">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+<body>
+    {{-- <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!--
     When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
 
@@ -43,6 +41,15 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="min-h-screen bg-gray-100">
+        <x-general.navigations.navbar :breadcrumbs="$breadcrumbs"></x-general.navigations.navbar>
+
+        <main class="py-10">
+            <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl">
+                {{ $slot }}
+            </div>
+        </main>
     </div>
 
     @stack('modals')

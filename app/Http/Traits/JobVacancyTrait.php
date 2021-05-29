@@ -9,10 +9,11 @@ use App\Models\JobVacancy;
 use App\Models\Province;
 use App\Models\TypeOfWork;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-trait JobVacanciesTrait
+trait JobVacancyTrait
 {
     public function validator(array $data, array $validatorName = [])
     {
@@ -34,6 +35,17 @@ trait JobVacanciesTrait
      */
     public function store(array $data)
     {
+        $user = User::find($data['created_by']);
+        $typeOfWork = TypeOfWork::find($data['type_of_work']);
+        $jobPosition = JobPosition::find($data['job_position']);
+        $country = Country::find($data['country']);
+        $province = Province::find($data['province']);
+        $city = City::find($data['city']);
+
+        $data['slug'] = Str::slug(
+            "{$user->name} {$typeOfWork->name} {$jobPosition->name} {$data['title']} {$country->name} {$province->name} {$city->name}"
+        );
+
         Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
@@ -43,21 +55,13 @@ trait JobVacanciesTrait
             'created_by' => 'required',
             'country' => 'required',
             'province' => 'required',
-            'city' => 'required'
+            'city' => 'required',
+            'slug' => 'unique:job_vacancies'
         ])->validate();
-
-        $user = User::find($data['created_by']);
-        $typeOfWork = TypeOfWork::find($data['type_of_work']);
-        $jobPosition = JobPosition::find($data['job_position']);
-        $country = Country::find($data['country']);
-        $province = Province::find($data['province']);
-        $city = City::find($data['city']);
 
         $jobVacancy = JobVacancy::create([
             'title' => $data['title'],
-            'slug' => Str::slug(
-                "{$user->name} {$typeOfWork->name} {$jobPosition->name} {$data['title']} {$country->name} {$province->name} {$city->name}"
-            ),
+            'slug' => $data['slug'],
             'description' => $data['description'],
             'type_of_work_id' => $data['type_of_work'],
             'work_experience_id' => $data['work_experience'],
@@ -80,6 +84,17 @@ trait JobVacanciesTrait
      */
     public function update(array $data, $slug)
     {
+        $user = User::find($data['created_by']);
+        $typeOfWork = TypeOfWork::find($data['type_of_work']);
+        $jobPosition = JobPosition::find($data['job_position']);
+        $country = Country::find($data['country']);
+        $province = Province::find($data['province']);
+        $city = City::find($data['city']);
+
+        $data['slug'] = Str::slug(
+            "{$user->name} {$typeOfWork->name} {$jobPosition->name} {$data['title']} {$country->name} {$province->name} {$city->name}"
+        );
+
         Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
@@ -89,12 +104,14 @@ trait JobVacanciesTrait
             'created_by' => 'required',
             'country' => 'required',
             'province' => 'required',
-            'city' => 'required'
+            'city' => 'required',
+            'slug' => 'unique:job_vacancies'
         ])->validate();
 
         $jobVacancy = JobVacancy::findOrFail($slug);
         $jobVacancy->update([
             'title' => $data['title'],
+            'slug' => $data['slug'],
             'description' => $data['description'],
             'type_of_work_id' => $data['type_of_work'],
             'work_experience_id' => $data['work_experience'],
@@ -103,11 +120,6 @@ trait JobVacanciesTrait
             'country_id' => $data['country'],
             'province_id' => $data['province'],
             'city_id' => $data['city']
-        ]);
-        $jobVacancy->update([
-            'slug' => Str::slug(
-                "{$jobVacancy->createdBy->name} {$jobVacancy->typeOfWork->name} {$jobVacancy->jobPosition->name} {$data['title']} {$jobVacancy->country->name} {$jobVacancy->province->name} {$jobVacancy->city->name}"
-            )
         ]);
 
         return $jobVacancy;

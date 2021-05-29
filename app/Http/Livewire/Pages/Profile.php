@@ -65,6 +65,14 @@ class Profile extends Component
 
         return view('livewire.pages.profile', [
                 'tabs' => $tabs,
+            ])
+            ->layout('layouts.app', [
+                'breadcrumbs' => [
+                    (object) [
+                        'href' => route('profile.show'),
+                        'name' => 'Profile'
+                    ]
+                ]
             ]);
     }
 }
