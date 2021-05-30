@@ -15,7 +15,7 @@ class CreateJobVacanciesUsersTable extends Migration
     {
         Schema::create('job_vacancies_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_vacancies_id')->nullable();
+            $table->foreignId('job_vacancy_id')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->string('status', 255)->nullable();
             $table->timestamps();

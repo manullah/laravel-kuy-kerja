@@ -42,6 +42,20 @@ class JobVacancy extends Model
         'city_id'
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'upload_date'
+    ];
+
+    public function getUploadDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
     public function typeOfWork()
     {
         return $this->belongsTo(TypeOfWork::class);
@@ -75,6 +89,11 @@ class JobVacancy extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function userApplied()
+    {
+        return $this->hasMany(JobVacancyUser::class, 'job_vacancy_id', 'id');
     }
 
     public function scopeFilter($query, array $filters) {

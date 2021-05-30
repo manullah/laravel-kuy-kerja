@@ -24,32 +24,10 @@
 </head>
 
 <body>
-    {{-- <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <!--
-    When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
-
-    Menu open: "fixed inset-0 z-40 overflow-y-auto", Menu closed: ""
-  -->
-        <x-general.navigations.navbar></x-general.navigations.navbar>
-
-        <div class="py-10">
-            <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-                <x-general.navigations.sidebar></x-general.navigations.sidebar>
-
-                <div class="col-span-10">
-                    {{ $slot }}
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="min-h-screen bg-gray-100">
         <x-general.navigations.navbar :breadcrumbs="$breadcrumbs"></x-general.navigations.navbar>
 
-        <main class="py-10">
-            <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl">
-                {{ $slot }}
-            </div>
-        </main>
+        {{ $slot }}
     </div>
 
     @stack('modals')

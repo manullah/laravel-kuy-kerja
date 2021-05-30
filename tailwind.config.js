@@ -216,6 +216,10 @@ module.exports = {
         boxShadow: ["focus", "dark:focus"],
     },
 
+    corePlugins: {
+        container: false,
+    },
+
     plugins: [
         require("@tailwindcss/forms"),
         require("tailwindcss-multi-theme"),
@@ -234,11 +238,11 @@ module.exports = {
 
             addUtilities(newUtilities, variants("boxShadow"));
 
-            addVariant('important', ({ container }) => {
-                container.walkRules(rule => {
-                    rule.selector = `.\\!${rule.selector.slice(1)}`
-                    rule.walkDecls(decl => {
-                        decl.important = true
+            addVariant("important", ({ container }) => {
+                container.walkRules((rule) => {
+                    rule.selector = `.\\!${rule.selector.slice(1)}`;
+                    rule.walkDecls((decl) => {
+                        decl.important = true;
                     });
                 });
             });

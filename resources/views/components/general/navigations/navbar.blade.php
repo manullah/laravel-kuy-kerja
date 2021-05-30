@@ -1,4 +1,4 @@
-<header x-data="{ showMobileMenu: false }" class="bg-white shadow">
+<header x-data="{ showMobileMenu: false }" class="bg-white shadow sticky top-0 z-10 ">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
@@ -124,8 +124,8 @@
                                     class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
-                                        alt="{{ Auth::user()->name }}">
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                                 </button>
                             @else
                                 <button type="button"

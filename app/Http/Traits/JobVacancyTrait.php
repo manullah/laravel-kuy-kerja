@@ -9,7 +9,6 @@ use App\Models\JobVacancy;
 use App\Models\Province;
 use App\Models\TypeOfWork;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -95,6 +94,7 @@ trait JobVacancyTrait
             "{$user->name} {$typeOfWork->name} {$jobPosition->name} {$data['title']} {$country->name} {$province->name} {$city->name}"
         );
 
+        $jobVacancy = JobVacancy::findOrFail($slug);
         Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
@@ -105,10 +105,9 @@ trait JobVacancyTrait
             'country' => 'required',
             'province' => 'required',
             'city' => 'required',
-            'slug' => 'unique:job_vacancies'
+            'slug' => 'unique:job_vacancies,slug,' . $jobVacancy->id
         ])->validate();
 
-        $jobVacancy = JobVacancy::findOrFail($slug);
         $jobVacancy->update([
             'title' => $data['title'],
             'slug' => $data['slug'],

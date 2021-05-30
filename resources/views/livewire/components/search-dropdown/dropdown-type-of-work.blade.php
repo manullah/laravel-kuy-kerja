@@ -1,5 +1,5 @@
 <div class="relative" x-data="{ isOpen: false }" @click.away="isOpen = false">
-    <x-jet-input type="text" wire:model.debounce.500ms="search" placeholder="Type of Work..." x-ref="search"
+    <x-jet-input type="text" wire:model.debounce.500ms="search" placeholder="Jenis Pekerjaan..." x-ref="search"
         @focus="isOpen = true" @keydown="isOpen = true" @keydown.escape.window="isOpen = false"
         @keydown.shift.tab="isOpen = false" />
 
