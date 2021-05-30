@@ -33,7 +33,7 @@
         </div>
     </section>
 
-    {{-- <div class="container">
+    <div class="container">
         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
             <aside class="hidden lg:block lg:col-span-4">
                 <div class="sticky top-32 space-y-4">
@@ -165,7 +165,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <a href="#">
+                                        <a href="{{ route('job-vacancies.show', $jobVacancy->slug) }}">
                                             <h3 class="mt-4 font-medium text-blue-500">
                                                 {{ $jobVacancy->title }}
                                             </h3>
@@ -272,5 +272,5 @@
                 @endforeach
             </main>
         </div>
-    </div> --}}
+    </div>
 </main>

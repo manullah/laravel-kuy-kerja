@@ -1,4 +1,4 @@
-<div>
+<div class="container py-8">
     <div class="card">
         <div class="card-body">
             <h1 class="mb-5">Profile</h1>

@@ -1,4 +1,4 @@
-<div>
+<div class="container py-8">
     <h1 class="mb-6">Kelola Lowongan Kerja</h1>
 
     @if (session()->has('message'))

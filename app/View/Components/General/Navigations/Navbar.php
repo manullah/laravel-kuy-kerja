@@ -29,10 +29,22 @@ class Navbar extends Component
         return view('components.general.navigations.navbar', [
             'menus' => [
                 (object) [
+                    'show' => true,
+                    'title' => 'Cari Kerja',
+                    'href' => route('job-vacancies.index'),
+                    'actived' => request()->routeIs('job-vacancies.*')
+                ],
+                (object) [
                     'show' => Auth::user(),
                     'title' => 'Profil',
                     'href' => route('profile.show'),
                     'actived' => request()->routeIs('profile.*')
+                ],
+                (object) [
+                    'show' => Auth::user() && Auth::user()->isSearcher(),
+                    'title' => 'Lamaran Pekerjaan',
+                    'href' => "route('job-application.')",
+                    'actived' => request()->routeIs('job-application.*')
                 ],
                 (object) [
                     'show' => Auth::user() && Auth::user()->isRecruiter(),

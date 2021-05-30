@@ -23,6 +23,7 @@ class JobVacancyUser extends Model
      */
     protected $fillable = [
         'job_vacancy_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 }
