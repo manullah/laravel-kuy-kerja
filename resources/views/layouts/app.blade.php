@@ -18,28 +18,16 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/950h9e4w6ghsa51btqxfimcz6gwkoj6zavbz1xxj4zg53w8z/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    @yield('scripts')
 </head>
 
-<body
-    x-data="{ isSideMenuOpen: (window.matchMedia('only screen and (min-width: 760px)').matches === true), darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
-    :class="{ 'theme-dark': darkTheme }">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <!--
-    When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
+<body>
+    <div class="min-h-screen bg-gray-100">
+        <x-general.navigations.navbar :breadcrumbs="$breadcrumbs"></x-general.navigations.navbar>
 
-    Menu open: "fixed inset-0 z-40 overflow-y-auto", Menu closed: ""
-  -->
-        <x-general.navigations.navbar></x-general.navigations.navbar>
-
-        <div class="py-10">
-            <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-                <x-general.navigations.sidebar></x-general.navigations.sidebar>
-
-                <div class="col-span-10">
-                    {{ $slot }}
-                </div>
-            </div>
-        </div>
+        {{ $slot }}
     </div>
 
     @stack('modals')

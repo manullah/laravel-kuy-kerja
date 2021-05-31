@@ -1,127 +1,223 @@
-<header class="sticky top-0 shadow-md bg-white dark:bg-gray-800 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
-            <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
-                <div class="lg:hidden flex-shrink-0 flex items-center">
-                    <!-- Mobile menu button -->
-                    <button type="button"
-                        class="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500"
-                        aria-expanded="false" x-on:click="isSideMenuOpen = !isSideMenuOpen">
-                        <span class="sr-only">Open menu</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+<header x-data="{ showMobileMenu: false }" class="bg-white shadow sticky top-0 z-10 ">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex px-2 lg:px-0">
+                <h5 class="flex-shrink-0 flex items-center text-primary-600">
+                    <a href="{{ route('index') }}">
+                        Kuy Kerja
+                    </a>
+                </h5>
+                <nav aria-label="Global" class="hidden lg:ml-6 lg:flex lg:items-center lg:space-x-4">
+                    @foreach ($menus as $menu)
+                        @if ($menu->show)
+                            <a href="{{ $menu->href }}" class="px-3 py-2 text-gray-900 text-sm font-medium">
+                                {{ $menu->title }}
+                            </a>
+                        @endif
+                    @endforeach
+                </nav>
             </div>
 
-            <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
-                <div class="flex items-center px-6 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0">
-                    <div class="w-full">
-                        <label for="search" class="sr-only">Search</label>
-                        <div class="relative">
-                            <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                                <!-- Heroicon name: solid/search -->
-                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd" />
-                                </svg>
+            <div class="flex items-center lg:hidden ml-auto">
+                <!-- Mobile menu button -->
+                <button type="button"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                    aria-expanded="false" x-on:click="showMobileMenu = !showMobileMenu">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Heroicon name: outline/menu -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile menu, show/hide based on mobile menu state. -->
+            <div class="lg:hidden">
+                <div x-show="showMobileMenu" class="z-20 fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"
+                    x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="duration-150 ease-in"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    x-on:click="showMobileMenu = !showMobileMenu"></div>
+
+                <div x-show="showMobileMenu"
+                    class="z-30 absolute top-0 right-0 max-w-none w-full p-2 transition transform origin-top"
+                    x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-150 ease-in"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+                    <div
+                        class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y divide-gray-200">
+                        <div class="pt-3 pb-2">
+                            <div class="flex items-center justify-between px-4">
+                                <h5 class="font-bold">
+                                    Kuy Kerja
+                                </h5>
+                                <div class="-mr-2">
+                                    <button type="button"
+                                        class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                                        x-on:click="showMobileMenu = !showMobileMenu">
+                                        <span class="sr-only">Close menu</span>
+                                        <!-- Heroicon name: outline/x -->
+                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                            <input id="search" name="search"
-                                class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 sm:text-sm"
-                                placeholder="Search" type="search">
+                            <div class="mt-3 px-2 space-y-1">
+                                @foreach ($menus as $menu)
+                                    @if ($menu->show)
+                                        <a href="{{ $menu->href }}"
+                                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">
+                                            {{ $menu->title }}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="pt-4 pb-2">
+                            {{-- <div class="flex items-center px-5">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full"
+                                    src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
+                                    alt="">
+                            </div>
+                            <div class="ml-3">
+                                <div class="text-base font-medium text-gray-800">Whitney Francis</div>
+                                <div class="text-sm font-medium text-gray-500">whitney@example.com</div>
+                            </div>
+                        </div> --}}
+                            <div class="mt-3 px-2 space-y-1">
+                                <a href="{{ route('profile.show') }}"
+                                    class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    <span>Profil</span>
+                                </a>
+
+                                <a href="{{ route('logout') }}"
+                                    class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-1"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Keluar
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center justify-end col-span-4 space-x-6">
-                <!-- Dark Mode -->
-                <button x-show="false" class="rounded-md focus:outline-none focus:shadow-outline-primary text-primary-600"
-                    x-on:click="darkTheme = !darkTheme; window.localStorage.setItem('darkTheme', darkTheme)"
-                    aria-label="Toggle color mode">
-                    <template x-if="!darkTheme">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
-                            </path>
-                        </svg>
-                    </template>
-                    <template x-if="darkTheme">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </template>
-                </button>
-
+            <div class="hidden lg:ml-4 lg:flex lg:items-center">
                 <!-- Profile dropdown -->
-                <div class="flex-shrink-0 relative ml-5">
+                @if (Auth::user())
                     <x-general.buttons.dropdown>
                         <x-slot name="button">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
+                                <button type="button"
+                                    class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
                                     <img class="h-8 w-8 rounded-full object-cover"
-                                        src="{{ Auth::user()->profile_photo_url }}"
-                                        alt="{{ Auth::user()->name }}" />
-                                </div>
+                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                                </button>
                             @else
-                                <span class="inline-flex rounded-md">
-                                    <div class="rounded-full focus:shadow-outline-primary focus:outline-none">
-                                        {{ Auth::user()->name }}
-
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </span>
+                                <button type="button"
+                                    class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
                             @endif
                         </x-slot>
 
-                        <ul>
-                            <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                                    href="{{ route('profile.show') }}">
-                                    <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
-                                        </path>
-                                    </svg>
-                                    <span>{{ __('Profile') }}</span>
-                                </a>
-                            </li>
+                        <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700"
+                            role="menuitem" tabindex="-1" id="user-menu-item-0">
+                            <span>Profil</span>
+                        </a>
 
-                            <li class="flex">
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}" class="w-full">
-                                    @csrf
+                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            tabindex="-1" id="user-menu-item-1"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Keluar
+                        </a>
 
-                                    <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                                        href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path
-                                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
-                                            </path>
-                                        </svg>
-                                        <span>{{ __('Log Out') }}</span>
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </x-general.buttons.dropdown>
-                </div>
+                @else
+                    <div>
+                        <a href="{{ route('login') }}">Login</a>
+                        <span class="mx-1">/</span>
+                        <a href="{{ route('register') }}">Sign up</a>
+                    </div>
+                @endif
             </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="border-t border-gray-200 py-3">
+            <nav class="flex" aria-label="Breadcrumb">
+                <div class="flex sm:hidden">
+                    <a href="{{ route('index') }}"
+                        class="group inline-flex space-x-3 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        <!-- Heroicon name: solid/arrow-narrow-left -->
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-600"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Back to Applicants</span>
+                    </a>
+                </div>
+                <div class="hidden sm:block">
+                    <ol class="flex items-center space-x-4">
+                        <li>
+                            <div>
+                                <a href="{{ route('index') }}" class="text-gray-400 hover:text-gray-500">
+                                    <!-- Heroicon name: solid/home -->
+                                    <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                    </svg>
+                                    <span class="sr-only">Home</span>
+                                </a>
+                            </div>
+                        </li>
+
+                        @foreach ($breadcrumbs as $breadcrumb)
+                            <li>
+                                <div class="flex items-center">
+                                    <svg class="flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                                    </svg>
+                                    <a href="{{ $breadcrumb->href }}"
+                                        class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                                        {{ $breadcrumb->name }}
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </nav>
         </div>
     </div>
 </header>

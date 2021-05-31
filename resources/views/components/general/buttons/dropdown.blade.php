@@ -1,11 +1,10 @@
 <div x-data="{ isProfileMenuOpen: false }" class="relative">
-    <button x-on:click="isProfileMenuOpen = !isProfileMenuOpen"
-        x-on:keydown.escape="isProfileMenuOpen = !isProfileMenuOpen" aria-label="Account" aria-haspopup="true"
-        class="align-middle">
+    <div x-on:click="isProfileMenuOpen = !isProfileMenuOpen"
+        x-on:keydown.escape="isProfileMenuOpen = !isProfileMenuOpen">
         @if (isset($button))
             {{ $button }}
         @endif
-    </button>
+    </div>
 
     <template x-if="isProfileMenuOpen">
         <div x-transition:enter="transition ease-out duration-100"

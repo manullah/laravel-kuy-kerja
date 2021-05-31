@@ -3,13 +3,14 @@
 }
 
 .form-group .label {
-    @apply text-gray-700 dark:text-gray-400 mb-1;
+    @apply block text-gray-700 dark:text-gray-400 mb-1;
 }
 
-.form-control {
+.input {
     @apply block
         w-full
         text-sm
+        border-gray-300
         dark:border-gray-600
         dark:bg-gray-700
         focus:border-primary-400
@@ -20,27 +21,46 @@
         form-input;
 }
 
-.search-form {
-    @apply block
-        w-full
-        rounded-md
-        py-2
-        pl-10
-        pr-3
-        text-sm
-        dark:border-gray-600
-        dark:bg-gray-700
-        focus:border-primary-400
-        focus:outline-none
-        focus:shadow-outline-primary
-        dark:text-gray-300
-        dark:focus:shadow-outline-gray;
-}
-
-.select {
-    @apply block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-primary-400 focus:outline-none focus:shadow-outline-primary dark:focus:shadow-outline-gray
-}
-
 .checkbox {
     @apply text-primary-600 form-checkbox focus:border-primary-400 focus:outline-none focus:shadow-outline-primary dark:focus:shadow-outline-gray;
+}
+
+.input.is-invalid {
+    @apply border-red-600 focus:border-red-400 focus:shadow-outline-red;
+}
+
+.invalid-feedback {
+    @apply text-xs text-red-600 dark:text-red-400;
+}
+
+.tabs {
+    @apply flex space-x-8;
+}
+
+.tabs .item {
+    @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none;
+}
+
+.tabs .item.active {
+    @apply border-purple-500 text-purple-600;
+}
+
+.switch {
+    @apply relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in;
+}
+
+.switch .toggle-checkbox {
+    @apply absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer;
+}
+
+.switch .toggle-label {
+    @apply block overflow-hidden h-6 bg-gray-300 rounded-full cursor-pointer;
+}
+
+.switch .toggle-checkbox:checked {
+    @apply right-0 border-primary-600;
+}
+
+.switch .toggle-checkbox:checked + .switch .toggle-label {
+    @apply bg-primary-600;
 }

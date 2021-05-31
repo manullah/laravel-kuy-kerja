@@ -18,6 +18,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/950h9e4w6ghsa51btqxfimcz6gwkoj6zavbz1xxj4zg53w8z/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    @yield('scripts')
 </head>
 
 <body x-data="{ isSideMenuOpen: true, darkTheme: (window.localStorage.getItem('darkTheme') === 'true') }"
@@ -30,9 +33,7 @@
 
             <main class="h-full pb-16 overflow-y-auto">
                 <!-- Remove everything INSIDE this div to a really blank page -->
-                <div class="container px-6 mx-auto grid">
-                    {{ $slot }}
-                </div>
+                {{ $slot }}
             </main>
         </div>
     </div>
