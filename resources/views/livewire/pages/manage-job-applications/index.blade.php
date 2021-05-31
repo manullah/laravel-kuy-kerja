@@ -1,4 +1,4 @@
-<div class="container py-8">
+<div class="container py-10">
     <div class="table-wrapper">
         <div class="table-container">
             <table class="table">

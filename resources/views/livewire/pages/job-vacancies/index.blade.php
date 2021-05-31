@@ -1,5 +1,5 @@
 <main>
-    <section class=" py-8 mb-8 bg-gradient-to-r from-green-400 via-blue-500 to-indigo-500 ">
+    <section class=" py-10 mb-8 bg-gradient-to-r from-green-400 via-blue-500 to-indigo-500 ">
         <div class="container px-6">
             <h1 class="mb-4 text-2xl text-white">Cari Pekerjaanmu</h1>
             <div class="bg-white rounded-lg shadow">

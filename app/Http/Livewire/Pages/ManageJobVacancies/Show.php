@@ -3,10 +3,16 @@
 namespace App\Http\Livewire\Pages\ManageJobVacancies;
 
 use App\Models\JobVacancy;
+use App\Models\JobVacancyUser;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Show extends Component
 {
+    use WithPagination;
+
+    public $paginate = 10;
+
     public $slug;
 
     public $jobVacancy;
@@ -18,7 +24,9 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.pages.manage-job-vacancies.show')
+        return view('livewire.pages.manage-job-vacancies.show', [
+                'jobApplications' => JobVacancyUser::get()
+            ])
             ->layout('layouts.app', [
                 'breadcrumbs' => [
                     (object) [

@@ -24,7 +24,7 @@ class JobVacanciesSeeder extends Seeder
         $jobVacancies = [
             [
                 'title' => 'Backend Developer',
-                'description' => '<p>Dicari backend developer</p>',
+                'description' => '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nemo aspernatur possimus doloribus reiciendis! Ullam accusantium a, ratione quas nostrum nemo ad iure officia necessitatibus dolorum inventore nam perspiciatis aut veniam minima tenetur ipsum ipsam assumenda iusto enim amet laudantium sapiente aperiam odit. Animi, accusantium consequatur! Tempore nam aspernatur voluptas.</p>',
                 'type_of_work_id' => 1,
                 'work_experience_id' => 1,
                 'job_position_id' => 1,
