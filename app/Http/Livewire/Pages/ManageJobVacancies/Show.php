@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Pages;
+namespace App\Http\Livewire\Pages\ManageJobVacancies;
 
 use App\Models\JobVacancy;
 use Livewire\Component;
 
-class ManageJobVacanciesShow extends Component
+class Show extends Component
 {
     public $slug;
 
@@ -18,7 +18,7 @@ class ManageJobVacanciesShow extends Component
 
     public function render()
     {
-        return view('livewire.pages.manage-job-vacancies-show')
+        return view('livewire.pages.manage-job-vacancies.show')
             ->layout('layouts.app', [
                 'breadcrumbs' => [
                     (object) [

@@ -1,9 +1,9 @@
 <main>
     <section class=" py-8 mb-8 bg-gradient-to-r from-green-400 via-blue-500 to-indigo-500 ">
-        <div class="container">
+        <div class="container px-6">
             <h1 class="mb-4 text-2xl text-white">Cari Pekerjaanmu</h1>
             <div class="bg-white rounded-lg shadow">
-                <div class="grid md:grid-cols-7 p-6 gap-x-6">
+                <div class="grid md:grid-cols-7 p-6 gap-x-6 gap-y-4">
                     <div class="col-span-2">
                         <div class="relative">
                             <input class="input" type="search" name="search" placeholder="Cari Pekerjaan.."
@@ -25,9 +25,11 @@
                     <div class="col-span-2">
                         @livewire('components.search-dropdown.dropdown-type-of-work')
                     </div>
-                    <button class="button primary">
-                        Cari
-                    </button>
+                    <div class="col-span-2 md:col-span-1">
+                        <button class="button primary w-full">
+                            Cari
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

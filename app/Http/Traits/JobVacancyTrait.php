@@ -127,12 +127,12 @@ trait JobVacancyTrait
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return array
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $jobVacancy = JobVacancy::findOrFail($id);
+        $jobVacancy = JobVacancy::findOrFail($slug);
         $jobVacancy->delete();
 
         return $jobVacancy;

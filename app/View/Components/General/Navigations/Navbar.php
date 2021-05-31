@@ -42,9 +42,9 @@ class Navbar extends Component
                 ],
                 (object) [
                     'show' => Auth::user() && Auth::user()->isSearcher(),
-                    'title' => 'Lamaran Pekerjaan',
-                    'href' => "route('job-application.')",
-                    'actived' => request()->routeIs('job-application.*')
+                    'title' => 'Kelola Lamaran Pekerjaan',
+                    'href' => route('manage-job-applications.index'),
+                    'actived' => request()->routeIs('manage-job-applications.*')
                 ],
                 (object) [
                     'show' => Auth::user() && Auth::user()->isRecruiter(),

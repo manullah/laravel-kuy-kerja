@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Pages;
+namespace App\Http\Livewire\Pages\ManageJobVacancies;
 
 use App\Http\Traits\JobPositionTrait;
 use App\Http\Traits\JobVacancyTrait;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class ManageJobVacanciesIndex extends Component
+class Index extends Component
 {
     use BaseAdminPageTrait, JobVacanciesSearchDropdownTrait;
     use JobVacancyTrait, TypeOfWorkTrait, WorkExperienceTrait, JobPositionTrait {
@@ -192,7 +192,7 @@ class ManageJobVacanciesIndex extends Component
 
     public function render()
     {
-        return view('livewire.pages.manage-job-vacancies-index', [
+        return view('livewire.pages.manage-job-vacancies.index', [
                 'countries' => Country::orderBy('name')->get()->transform(function ($item, $key) {
                     return (object) [
                         'name' => $item->name,
