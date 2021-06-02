@@ -31,6 +31,9 @@ class Index extends Component
 
     public function mount(Request $request)
     {
+        $country = null;
+        $province = null;
+        $city = null;
         if ($request->city) {
             $city = City::find($request->city);
             $province = Province::find($city->province_id);
@@ -43,7 +46,7 @@ class Index extends Component
             'typeOfWorks' => $request->typeofworks ? explode(':', $request->typeofworks) : [],
             'workExperiences' => $request->workexperiences ? explode(':', $request->workexperiences) : [],
             'jobPositions' => $request->jobpositions ? explode(':', $request->jobpositions) : [],
-            'country' => $country ? $country->id : $request->coutnry,
+            'country' => $country ? $country->id : $request->country,
             'province' => $province ? $province->id : $request->province,
             'city' => $request->city,
         ];
