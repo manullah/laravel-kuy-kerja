@@ -31,14 +31,20 @@ class Index extends Component
 
     public function mount(Request $request)
     {
+        if ($request->city) {
+            $city = City::find($request->city);
+            $province = Province::find($city->province_id);
+            $country = Country::find($province->country_id);
+        }
+
         $this->queryParams = $request->all();
         $this->filters = [
             'search' => $request->search,
             'typeOfWorks' => $request->typeofworks ? explode(':', $request->typeofworks) : [],
             'workExperiences' => $request->workexperiences ? explode(':', $request->workexperiences) : [],
             'jobPositions' => $request->jobpositions ? explode(':', $request->jobpositions) : [],
-            'country' => $request->country,
-            'province' => $request->province,
+            'country' => $country->id,
+            'province' => $province->id,
             'city' => $request->city,
         ];
     }
