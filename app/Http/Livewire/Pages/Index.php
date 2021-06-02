@@ -8,11 +8,62 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $search;
+    public $filters = [
+        'search' => null,
+        'city' => null,
+        'typeOfWork' => null
+    ];
 
-    public function applyJobVacancy($slug)
+    public $stringSearchDropdown = [
+        'city' => null,
+        'typeOfWork' => null
+    ];
+
+    protected $listeners = [
+        'chooseTypeOfWork',
+        'changeTypeOfWork',
+        'chooseCity',
+        'changeCity',
+    ];
+
+    public function chooseTypeOfWork($option)
     {
-        dd($slug);
+        $this->filters['typeOfWork'] = $option['id'];
+        $this->stringSearchDropdown['typeOfWork'] = $option['name'];
+
+        $this->emit('emitSearchTypeOfWork', $option['name']);
+    }
+
+    public function changeTypeOfWork($value)
+    {
+        $this->filters['typeOfWork'] = null;
+        $this->stringSearchDropdown['typeOfWork'] = $value;
+    }
+
+    public function chooseCity($option)
+    {
+        $this->filters['city'] = $option['id'];
+        $this->stringSearchDropdown['city'] = $option['name'];
+
+        $this->emit('emitSearchCity', $option['name']);
+    }
+
+    public function changeCity($value)
+    {
+        $this->filters['city'] = null;
+        $this->stringSearchDropdown['city'] = $value;
+    }
+
+    public function searchJobVacancies()
+    {
+        // dd($this->filters);
+        redirect(
+            route('job-vacancies.index', [
+                'search' => $this->filters['search'] ? $this->filters['search'] : null,
+                'typeofworks' => $this->filters['typeOfWork'],
+                'city' => $this->filters['city'],
+            ])
+        );
     }
 
     public function render()

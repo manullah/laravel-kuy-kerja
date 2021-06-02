@@ -10,20 +10,20 @@ class DropdownCity extends Component
     public $search;
 
     protected $listeners = [
-        'emitSearchCreatedBy'
+        'emitSearchCity'
     ];
 
     public function updatedSearch($value)
     {
-        $this->emit('changeCreatedBy', $value);
+        $this->emit('changeCity', $value);
     }
 
     public function chooseOption($option)
     {
-        $this->emit('chooseCreatedBy', $option);
+        $this->emit('chooseCity', $option);
     }
 
-    public function emitSearchCreatedBy($search)
+    public function emitSearchCity($search)
     {
         $this->search = $search;
     }

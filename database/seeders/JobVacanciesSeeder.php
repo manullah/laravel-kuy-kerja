@@ -32,11 +32,32 @@ class JobVacanciesSeeder extends Seeder
                 'country_id' => 1,
                 'province_id' => 11,
                 'city_id' => 159
+            ],
+            [
+                'title' => 'Frontend Developer',
+                'description' => '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nemo aspernatur possimus doloribus reiciendis! Ullam accusantium a, ratione quas nostrum nemo ad iure officia necessitatibus dolorum inventore nam perspiciatis aut veniam minima tenetur ipsum ipsam assumenda iusto enim amet laudantium sapiente aperiam odit. Animi, accusantium consequatur! Tempore nam aspernatur voluptas.</p>',
+                'type_of_work_id' => 1,
+                'work_experience_id' => 1,
+                'job_position_id' => 1,
+                'created_by' => 3,
+                'country_id' => 1,
+                'province_id' => 11,
+                'city_id' => 159
+            ],
+            [
+                'title' => 'Quality Assurance',
+                'description' => '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nemo aspernatur possimus doloribus reiciendis! Ullam accusantium a, ratione quas nostrum nemo ad iure officia necessitatibus dolorum inventore nam perspiciatis aut veniam minima tenetur ipsum ipsam assumenda iusto enim amet laudantium sapiente aperiam odit. Animi, accusantium consequatur! Tempore nam aspernatur voluptas.</p>',
+                'type_of_work_id' => 1,
+                'work_experience_id' => 1,
+                'job_position_id' => 1,
+                'created_by' => 3,
+                'country_id' => 1,
+                'province_id' => 11,
+                'city_id' => 159
             ]
         ];
 
         foreach ($jobVacancies as $key => $value) {
-            // dd($value);
             $user = User::find($value['created_by']);
             $typeOfWork = TypeOfWork::find($value['type_of_work_id']);
             $jobPosition = JobPosition::find($value['job_position_id']);
