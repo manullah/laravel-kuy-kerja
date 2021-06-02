@@ -43,8 +43,8 @@ class Index extends Component
             'typeOfWorks' => $request->typeofworks ? explode(':', $request->typeofworks) : [],
             'workExperiences' => $request->workexperiences ? explode(':', $request->workexperiences) : [],
             'jobPositions' => $request->jobpositions ? explode(':', $request->jobpositions) : [],
-            'country' => $country->id,
-            'province' => $province->id,
+            'country' => $country ? $country->id : $request->coutnry,
+            'province' => $province ? $province->id : $request->province,
             'city' => $request->city,
         ];
     }
