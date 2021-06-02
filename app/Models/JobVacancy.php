@@ -120,6 +120,33 @@ class JobVacancy extends Model
                 ->orWhereHas('createdBy', function ($query) use ($search) {
                     $query->where('name', 'like', '%' . $search . '%');
                 });
+		})
+        ->when($filters['typeofworks'] ?? null, function ($query, $typeOfWorks) {
+            $typeOfWorks = explode(':', $typeOfWorks);
+            foreach ($typeOfWorks as $key => $value) {
+                $query->orWhere('type_of_work_id', $value);
+            }
+		})
+        ->when($filters['workexperiences'] ?? null, function ($query, $workExperiences) {
+            $workExperiences = explode(':', $workExperiences);
+            foreach ($workExperiences as $key => $value) {
+                $query->orWhere('type_of_work_id', $value);
+            }
+		})
+        ->when($filters['jobpositions'] ?? null, function ($query, $jobPositions) {
+            $jobPositions = explode(':', $jobPositions);
+            foreach ($jobPositions as $key => $value) {
+                $query->orWhere('type_of_work_id', $value);
+            }
+		})
+        ->when($filters['country'] ?? null, function ($query, $country) {
+            $query->where('country_id', $country);
+		})
+        ->when($filters['province'] ?? null, function ($query, $province) {
+            $query->where('province_id', $province);
+		})
+        ->when($filters['city'] ?? null, function ($query, $city) {
+            $query->where('city_id', $city);
 		});
 	}
 }

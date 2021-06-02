@@ -7,7 +7,7 @@
                     <div class="col-span-2">
                         <div class="relative">
                             <input class="input" type="search" name="search" placeholder="Cari Pekerjaan.."
-                                style="padding-right: 2.5rem !important" wire:model="search">
+                                style="padding-right: 2.5rem !important" wire:model="filters.search">
                             <button class="absolute right-0 top-0 bottom-0 mr-3">
                                 <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
@@ -26,7 +26,7 @@
                         @livewire('components.search-dropdown.dropdown-type-of-work')
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <button class="button primary w-full">
+                        <button class="button primary w-full" wire:click="searchJobVacancies">
                             Cari
                         </button>
                     </div>
