@@ -31,7 +31,7 @@ trait JobVacancyUserTrait
      *
      * @param  array $data
      * @param  int  $id
-     * @return array
+     * @return App\Models\JobVacancyUser
      */
     public function update(array $data, $id)
     {

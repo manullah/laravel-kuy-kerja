@@ -25,6 +25,11 @@ class Show extends Component
     public function applyNow()
     {
         if ($this->securityApply == $this->securityWording) {
+            if (!checkProfileCompleted(Auth::user())) {
+                session()->flash('error', "Tolong lengkapi profil anda terlebih dahulu!");
+                return;
+            }
+
             $JobVacancyUser = JobVacancyUser::where('job_vacancy_id', $this->jobVacancy->id)
                     ->where('user_id', Auth::user()->id)
                     ->first();
@@ -37,6 +42,8 @@ class Show extends Component
                     'user_id' => Auth::user()->id,
                     'status' => 'PENDING'
                 ]);
+
+                $this->securityApply = null;
 
                 session()->flash('success', "Anda telah berhasil melamar!, {$this->jobVacancy->createdBy->name} akan segera menginformasi anda untuk tahap selanjutnya");
             }

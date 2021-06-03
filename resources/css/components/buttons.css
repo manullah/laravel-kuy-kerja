@@ -12,6 +12,10 @@
         focus:outline-none;
 }
 
+.button:disabled {
+    @apply opacity-50 cursor-not-allowed focus:outline-none;
+}
+
 .button.fluid {
     @apply block w-full;
 }

@@ -120,7 +120,7 @@
                         wire:model="securityApply" />
                 </div>
                 <div class="mt-6 flex flex-col justify-stretch">
-                    <button type="button" class="button primary" wire:click="applyNow">
+                    <button type="button" class="button primary" wire:click="applyNow" @if ($securityWording != $securityApply) disabled @endif>
                         Lamar Sekarang
                     </button>
                 </div>

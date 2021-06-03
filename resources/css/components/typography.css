@@ -1,9 +1,18 @@
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     @apply text-gray-700 dark:text-gray-200 font-semibold;
 }
 
-p, label {
+p,
+label {
     @apply text-gray-600 dark:text-gray-300;
+}
+
+a {
+    /* @apply text-blue-400; */
 }
 
 h1 {

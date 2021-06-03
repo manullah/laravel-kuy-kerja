@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pages\ManageJobVacancies;
 
+use App\Http\Traits\JobVacancyUserTrait;
 use App\Models\JobVacancy;
 use App\Models\JobVacancyUser;
 use Livewire\Component;
@@ -9,23 +10,62 @@ use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
+    use WithPagination,
+        JobVacancyUserTrait;
 
-    public $paginate = 10;
-
-    public $slug;
+    public $state = [
+        'job_vacancy_id' => null,
+        'user_id' => null,
+        'status' => null
+    ];
 
     public $jobVacancy;
 
-    public function mount()
+    public $modalChangeStatus = false;
+
+    public $applicantActived;
+
+    public function getOptionsStatusJobVacancyProperty()
     {
-        $this->jobVacancy = JobVacancy::find($this->slug);
+        return [
+            (object) ['name' => 'PENDING', 'title' => 'Pending'],
+            (object) ['name' => 'INTERVIEW', 'title' => 'Wawancara'],
+            (object) ['name' => 'ACCEPTED', 'title' => 'Diterima']
+        ];
+    }
+
+    public function mount($slug)
+    {
+        $this->jobVacancy = JobVacancy::find($slug);
+    }
+
+    public function triggerModalChangeStatus($idJobVacancyUser)
+    {
+        $this->applicantActived = JobVacancyUser::find($idJobVacancyUser);
+        $this->fill([
+            'state' => [
+                'job_vacancy_id' => $this->applicantActived->job_vacancy_id,
+                'user_id' => $this->applicantActived->user_id,
+                'status' => $this->applicantActived->status
+            ]
+        ]);
+        $this->modalChangeStatus = !$this->modalChangeStatus;
+    }
+
+    public function changeStatusApplicant()
+    {
+        $jobVacancyUser = $this->update($this->state, $this->applicantActived->id);
+
+        $this->reset(['state']);
+        $this->modalChangeStatus = !$this->modalChangeStatus;
+
+        session()->flash('message', "Status {$jobVacancyUser->user->name} was updated!");
     }
 
     public function render()
     {
         return view('livewire.pages.manage-job-vacancies.show', [
-                'jobApplications' => JobVacancyUser::get()
+                'userApplications' => JobVacancyUser::paginate(10),
             ])
             ->layout('layouts.app', [
                 'breadcrumbs' => [
@@ -34,7 +74,7 @@ class Show extends Component
                         'name' => 'Kelola Lowongan'
                     ],
                     (object) [
-                        'href' => route('manage-job-vacancies.show', $this->slug),
+                        'href' => '#',
                         'name' => $this->jobVacancy->title
                     ],
                 ]

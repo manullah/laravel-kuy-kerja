@@ -33,7 +33,7 @@ class JobVacancyUser extends Model
      * @var array
      */
     protected $appends = [
-        'upload_date'
+        'my_status'
     ];
 
     public function getMyStatusAttribute()
@@ -52,5 +52,10 @@ class JobVacancyUser extends Model
     public function jobVacancy()
     {
         return $this->belongsTo(JobVacancy::class, 'job_vacancy_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

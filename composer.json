@@ -29,7 +29,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Database\\Seeders\\Regions\\": "database/seeders/regions"
-        }
+        },
+        "files": [
+            "app/Helpers/ProfileHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
