@@ -124,19 +124,25 @@ class JobVacancy extends Model
         ->when($filters['typeofworks'] ?? null, function ($query, $typeOfWorks) {
             $typeOfWorks = explode(':', $typeOfWorks);
             foreach ($typeOfWorks as $key => $value) {
-                $query->orWhere('type_of_work_id', $value);
+                ($key == 0)
+                 ? $query->where('type_of_work_id', $value)
+                 : $query->orWhere('type_of_work_id', $value);
             }
 		})
         ->when($filters['workexperiences'] ?? null, function ($query, $workExperiences) {
             $workExperiences = explode(':', $workExperiences);
             foreach ($workExperiences as $key => $value) {
-                $query->orWhere('type_of_work_id', $value);
+                ($key == 0)
+                 ? $query->where('work_experience_id', $value)
+                 : $query->orWhere('work_experience_id', $value);
             }
 		})
         ->when($filters['jobpositions'] ?? null, function ($query, $jobPositions) {
             $jobPositions = explode(':', $jobPositions);
             foreach ($jobPositions as $key => $value) {
-                $query->orWhere('type_of_work_id', $value);
+                ($key == 0)
+                 ? $query->where('job_position_id', $value)
+                 : $query->orWhere('job_position_id', $value);
             }
 		})
         ->when($filters['country'] ?? null, function ($query, $country) {
